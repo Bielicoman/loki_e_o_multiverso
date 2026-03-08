@@ -27,7 +27,7 @@ const TimelineData = [
         title: "Thor: Ragnarok",
         description: "Assume o papel de trickster-herói, ajuda na salvação de Asgard e fortalece laços com Thor.",
         color: "#268d33",
-        image: "/loki-images/Thor-ragnarok.jpg"
+        image: "/loki-images/thorrag023.jpg"
     },
     {
         year: "2018",
@@ -41,7 +41,7 @@ const TimelineData = [
         title: "LOKI (Série)",
         description: "Reescreve sua jornada, confronta suas variantes e torna-se o guardião do multiverso.",
         color: "#ffd700", // Gold climax
-        image: "/loki-images/7633018.jpg"
+        image: "/loki-images/1512168.jpg"
     }
 ];
 
