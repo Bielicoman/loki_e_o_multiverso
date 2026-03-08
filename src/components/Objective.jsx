@@ -30,19 +30,36 @@ const Objective = () => {
 
             <div style={{
                 background: 'var(--glass-bg)',
-                backdropFilter: 'blur(10px)',
+                backdropFilter: 'blur(20px)',
                 border: '1px solid var(--glass-border)',
-                padding: '3rem',
-                borderRadius: '16px',
+                padding: '4rem 2rem',
+                borderRadius: '24px',
                 maxWidth: '900px',
                 margin: '0 auto',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.2)'
+                boxShadow: '0 30px 60px rgba(0,0,0,0.4)',
+                position: 'relative',
+                overflow: 'hidden'
             }}>
+                <div style={{
+                    position: 'absolute',
+                    top: '-50px',
+                    left: '-50px',
+                    width: '100px',
+                    height: '100px',
+                    background: 'var(--color-accent)',
+                    filter: 'blur(60px)',
+                    opacity: 0.2,
+                    borderRadius: '50%'
+                }}></div>
                 <p style={{
-                    fontSize: '1.5rem',
-                    lineHeight: 1.8,
+                    fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                    lineHeight: 1.6,
                     textAlign: 'center',
-                    fontStyle: 'italic'
+                    fontStyle: 'italic',
+                    fontWeight: 300,
+                    letterSpacing: '0.03em',
+                    color: 'var(--text-color)',
+                    textShadow: '0 2px 10px rgba(0,0,0,0.5)'
                 }}>
                     "Entender qual é o papel de Loki na interconectividade do universo compartilhado do MCU (Marvel Cinematic Universe)."
                 </p>

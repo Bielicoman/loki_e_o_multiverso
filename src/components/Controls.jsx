@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Moon, Sun } from 'lucide-react';
+import { Volume2, VolumeX, Moon, Sun, Download } from 'lucide-react';
 
 const Controls = ({ theme, toggleTheme }) => {
     const [isMuted, setIsMuted] = useState(true);
@@ -33,7 +33,7 @@ const Controls = ({ theme, toggleTheme }) => {
         }}>
             <audio
                 ref={audioRef}
-                src="/loki-theme.mp3"
+                src="/loki-theme.m4a"
                 loop
                 muted={isMuted}
             />
@@ -42,43 +42,86 @@ const Controls = ({ theme, toggleTheme }) => {
                 onClick={toggleTheme}
                 style={{
                     background: 'var(--glass-bg)',
-                    backdropFilter: 'blur(10px)',
+                    backdropFilter: 'blur(20px)',
                     border: '1px solid var(--glass-border)',
-                    color: 'var(--color-accent)',
-                    padding: '0.75rem',
+                    boxShadow: 'var(--glass-shadow)',
+                    color: 'var(--text-color)',
+                    padding: '1rem',
                     borderRadius: '50%',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transition: 'transform 0.2s ease, background 0.2s ease'
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
-                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseOver={e => {
+                    e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                }}
+                onMouseOut={e => {
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.background = 'var(--glass-bg)';
+                }}
             >
-                {theme === 'dark' ? <Sun size={24} /> : <Moon size={24} />}
+                {theme === 'dark' ? <Sun size={20} strokeWidth={1.5} /> : <Moon size={20} strokeWidth={1.5} />}
             </button>
 
             <button
                 onClick={toggleMute}
                 style={{
                     background: 'var(--glass-bg)',
-                    backdropFilter: 'blur(10px)',
+                    backdropFilter: 'blur(20px)',
                     border: '1px solid var(--glass-border)',
-                    color: 'var(--color-accent)',
-                    padding: '0.75rem',
+                    boxShadow: 'var(--glass-shadow)',
+                    color: 'var(--text-color)',
+                    padding: '1rem',
                     borderRadius: '50%',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transition: 'transform 0.2s ease, background 0.2s ease'
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
                 }}
-                onMouseOver={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+                onMouseOver={e => {
+                    e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
+                }}
+                onMouseOut={e => {
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.background = 'var(--glass-bg)';
+                }}
             >
-                {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+                {isMuted ? <VolumeX size={20} strokeWidth={1.5} /> : <Volume2 size={20} strokeWidth={1.5} />}
             </button>
+            <a
+                href="/loki_text.pdf"
+                download="Artigo_Loki_Multiverso_MCU.pdf"
+                title="Download PDF do Artigo Original"
+                style={{
+                    background: 'var(--color-accent)',
+                    backdropFilter: 'blur(20px)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    boxShadow: '0 10px 30px rgba(230, 194, 0, 0.3)',
+                    color: 'var(--color-primary)',
+                    padding: '1rem',
+                    borderRadius: '50%',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+                onMouseOver={e => {
+                    e.currentTarget.style.transform = 'scale(1.1) translateY(-2px)';
+                    e.currentTarget.style.background = '#ffd700'; /* Brighter gold on hover */
+                }}
+                onMouseOut={e => {
+                    e.currentTarget.style.transform = 'scale(1) translateY(0)';
+                    e.currentTarget.style.background = 'var(--color-accent)';
+                }}
+            >
+                <Download size={20} strokeWidth={2} />
+            </a>
         </div>
     );
 };

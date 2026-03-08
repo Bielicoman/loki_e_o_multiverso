@@ -34,46 +34,52 @@ const Header = () => {
             />
 
             <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
-                style={{ zIndex: 10, textAlign: 'center', padding: '0 2rem' }}
+                initial={{ y: 50, opacity: 0, scale: 0.95 }}
+                animate={{ y: 0, opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{ zIndex: 10, textAlign: 'center', padding: '0 2rem', backdropFilter: 'blur(5px)' }}
             >
                 <h1 style={{
-                    fontSize: 'clamp(3rem, 8vw, 8rem)',
-                    letterSpacing: '0.2em',
+                    fontSize: 'clamp(4rem, 10vw, 10rem)',
+                    letterSpacing: '0.15em',
                     textTransform: 'uppercase',
-                    background: 'linear-gradient(to right, var(--color-primary), var(--color-accent))',
+                    background: 'linear-gradient(135deg, var(--color-light) 0%, var(--color-accent) 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    marginBottom: '1rem',
-                    textShadow: '0 0 20px rgba(16, 46, 0, 0.5)'
+                    marginBottom: '0.5rem',
+                    textShadow: '0 10px 30px rgba(0, 0, 0, 0.8)',
+                    lineHeight: 1
                 }}>
                     LOKI
                 </h1>
 
                 <h2 style={{
-                    fontSize: 'clamp(1rem, 2vw, 2rem)',
-                    fontWeight: 400,
-                    letterSpacing: '0.05em',
-                    maxWidth: '800px',
+                    fontSize: 'clamp(1rem, 2.5vw, 2.5rem)',
+                    fontWeight: 300,
+                    letterSpacing: '0.02em',
+                    maxWidth: '900px',
                     margin: '0 auto',
-                    color: 'var(--color-light)'
+                    color: 'var(--color-light)',
+                    textShadow: '0 4px 15px rgba(0,0,0,0.5)'
                 }}>
-                    O Papel de Loki na Construção Narrativa do Universo Compartilhado do MCU
+                    O Papel na Construção Narrativa do Universo Compartilhado do MCU
                 </h2>
 
                 <div style={{
-                    marginTop: '3rem',
-                    fontSize: '1rem',
+                    marginTop: '4rem',
+                    fontSize: '0.9rem',
                     color: 'var(--color-gray)',
-                    borderTop: '1px solid var(--glass-border)',
-                    paddingTop: '1rem',
-                    display: 'inline-block'
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
+                    paddingTop: '1.5rem',
+                    display: 'inline-block',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
                 }}>
-                    <p>Alex Gabriel Ascencio da Silva</p>
-                    <p>Thiago Sagrillo Bandeira</p>
-                    <p>Orientadora: Andreia Moura</p>
+                    <p style={{ marginBottom: '0.5rem', fontWeight: 500, color: 'var(--color-light)' }}>
+                        Alex Ascencio, Thiago Bandeira
+                    </p>
+                    <p>Rádio TV do UNASP EC</p>
+                    <p style={{ marginTop: '0.5rem', fontSize: '0.8rem', opacity: 0.7 }}>Orientadora: Andreia Moura</p>
                 </div>
             </motion.div>
 

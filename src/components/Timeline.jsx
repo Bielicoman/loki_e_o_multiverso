@@ -83,20 +83,24 @@ const Timeline = () => {
                                 }}
                             >
                                 {/* Content Box */}
-                                <div style={{
-                                    width: 'calc(50% - 3rem)',
-                                    textAlign: isEven ? 'right' : 'left',
-                                    background: 'var(--glass-bg)',
-                                    padding: '1.5rem',
-                                    borderRadius: '12px',
-                                    border: `1px solid ${item.color}55`, // Transparency appended
-                                    boxShadow: `0 4px 20px ${item.color}33`,
-                                    position: 'relative'
-                                }}>
-                                    <span style={{ color: 'var(--color-accent)', fontWeight: 'bold', display: 'block', marginBottom: '0.5rem' }}>{item.year}</span>
-                                    <h3 style={{ marginBottom: '1rem', color: 'var(--color-light)' }}>{item.title}</h3>
-                                    <p style={{ color: 'var(--color-gray)', fontSize: '0.95rem' }}>{item.description}</p>
-                                </div>
+                                <motion.div
+                                    whileHover={{ scale: 1.02 }}
+                                    style={{
+                                        width: 'calc(50% - 3rem)',
+                                        textAlign: isEven ? 'right' : 'left',
+                                        background: 'var(--glass-bg)',
+                                        padding: '2rem',
+                                        borderRadius: '20px',
+                                        border: `1px solid ${item.color}55`,
+                                        backdropFilter: 'blur(20px)',
+                                        boxShadow: `0 15px 30px rgba(0,0,0,0.3), inset 0 0 20px ${item.color}11`,
+                                        position: 'relative'
+                                    }}
+                                >
+                                    <span style={{ color: 'var(--color-accent)', fontWeight: 600, display: 'block', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>{item.year}</span>
+                                    <h3 style={{ marginBottom: '1rem', color: 'var(--color-light)', fontSize: '1.4rem' }}>{item.title}</h3>
+                                    <p style={{ color: 'var(--text-color)', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.description}</p>
+                                </motion.div>
 
                                 {/* Node Dot */}
                                 <div style={{
