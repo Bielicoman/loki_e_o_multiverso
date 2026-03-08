@@ -98,7 +98,7 @@ const References = () => (
                 {/* Bibliographic refs */}
                 <div style={{ maxWidth: '860px', display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '4rem' }}>
                     {refsData.filter(r => !r.isFilmo).map((ref, i) => (
-                        <RefCard key={i} ref={ref} />
+                        <RefCard key={i} item={ref} />
                     ))}
                 </div>
 
@@ -111,7 +111,7 @@ const References = () => (
 
                 <div style={{ maxWidth: '860px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                     {refsData.filter(r => r.isFilmo).map((ref, i) => (
-                        <RefCard key={i} ref={ref} />
+                        <RefCard key={i} item={ref} />
                     ))}
                 </div>
 
@@ -164,9 +164,9 @@ const References = () => (
     </section>
 );
 
-const RefCard = ({ ref }) => (
+const RefCard = ({ item }) => (
     <motion.a
-        href={ref.url}
+        href={item.url}
         target="_blank"
         rel="noopener noreferrer"
         initial={{ opacity: 0, x: -15 }}
@@ -198,7 +198,7 @@ const RefCard = ({ ref }) => (
     >
         <div style={{ flex: 1 }}>
             <p style={{ color: 'var(--color-gray)', fontSize: '0.85rem', lineHeight: 1.65, fontFamily: 'var(--font-body)', fontWeight: 400 }}>
-                {ref.text}
+                {item.text}
             </p>
         </div>
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(230,194,0,0.4)" strokeWidth="1.5" style={{ flexShrink: 0, marginTop: '0.3rem' }}>
