@@ -39,7 +39,7 @@ const Conclusion = () => {
                             fontWeight: 300
                         }}
                     >
-                        <img src="/loki-scepter.png" alt="Cetro do Loki" style={{ width: '150px', marginBottom: '2.5rem', filter: 'drop-shadow(0 0 25px rgba(230, 194, 0, 0.5))' }} />
+                        <img src="/loki-images/loki-logo-freelogovectors.net_.png" alt="Loki Logo" style={{ width: '150px', marginBottom: '2.5rem', filter: 'drop-shadow(0 0 25px rgba(230, 194, 0, 0.5))' }} />
                         <p className="mb-2" style={{ width: '100%', textAlign: 'justify', letterSpacing: '0.02em' }}>
                             A principal ideia deste estudo é mostrar como a Marvel usa o personagem Loki para resolver os desafios de contar uma história tão grande e complexa. Ele deixa de ser só um personagem secundário e vira o centro de tudo, ajudando a organizar a mudança de uma história com começo, meio e fim para um universo cheio de realidades e linhas do tempo diferentes.
                         </p>

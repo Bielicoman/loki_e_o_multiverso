@@ -24,7 +24,7 @@ const Header = () => {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'radial-gradient(circle at center, rgba(16, 46, 0, 0.6) 0%, rgba(0,0,0,0.9) 100%), url("/loki-god.png")',
+                    backgroundImage: 'radial-gradient(circle at center, rgba(16, 46, 0, 0.6) 0%, rgba(0,0,0,0.9) 100%), url("/loki-images/3528141-loki-1.jpg")',
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundBlendMode: 'overlay',

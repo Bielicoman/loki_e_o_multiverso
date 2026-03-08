@@ -4,7 +4,7 @@ const Multiverse = () => {
     return (
         <section id="multiverso" style={{
             padding: '6rem 0',
-            background: 'url("/yggdrasil.png") center/cover no-repeat, var(--bg-color)',
+            background: 'url("/loki-images/lokiseason2-episode6-endingexplained.jpg") center/cover no-repeat, var(--bg-color)',
             backgroundBlendMode: 'overlay',
             position: 'relative'
         }}>
