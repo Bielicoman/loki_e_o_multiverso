@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import Header from './components/Header';
+import GlowCursor from './components/GlowCursor';
+import HeroSection from './components/HeroSection';
 import Objective from './components/Objective';
 import Transmedia from './components/Transmedia';
 import Multiverse from './components/Multiverse';
-import Timeline from './components/Timeline';
+import Methodology from './components/Methodology';
+import TreeTimeline from './components/TreeTimeline';
 import Conclusion from './components/Conclusion';
 import References from './components/References';
 import Controls from './components/Controls';
@@ -12,7 +14,6 @@ import './App.css';
 function App() {
     const [theme, setTheme] = useState('dark');
 
-    // Sync theme with document element
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
     }, [theme]);
@@ -23,27 +24,40 @@ function App() {
 
     return (
         <div className="app-container">
+            <GlowCursor />
             <Controls theme={theme} toggleTheme={toggleTheme} />
 
             <main>
-                <Header />
+                <HeroSection />
                 <Objective />
                 <Transmedia />
                 <Multiverse />
-                <Timeline />
+                <Methodology />
+                <TreeTimeline />
                 <Conclusion />
                 <References />
             </main>
 
             <footer style={{
                 textAlign: 'center',
-                padding: '2rem',
+                padding: '3rem 2rem',
                 background: 'var(--color-dark)',
                 color: 'var(--color-gray)',
-                fontSize: '0.9rem',
-                borderTop: '1px solid var(--glass-border)'
+                fontSize: '0.85rem',
+                borderTop: '1px solid var(--glass-border)',
             }}>
-                <p>Desenvolvido para apresentação do artigo "O PAPEL DE LOKI NA CONSTRUÇÃO NARRATIVA DO UNIVERSO COMPARTILHADO DO MCU"</p>
+                <img
+                    src="/loki-images/2016_Marvel_Studios_Logo.webp"
+                    alt="Marvel Studios"
+                    style={{ height: '28px', opacity: 0.35, marginBottom: '1rem', display: 'block', margin: '0 auto 1rem' }}
+                />
+                <p style={{ marginBottom: '0.4rem' }}>
+                    <strong style={{ color: 'var(--color-light)' }}>Alex Ascencio &amp; Thiago Bandeira</strong> — Rádio TV do UNASP EC
+                </p>
+                <p>Artigo: "O Papel de Loki na Construção Narrativa do Universo Compartilhado do MCU"</p>
+                <p style={{ marginTop: '0.75rem', opacity: 0.5, fontSize: '0.78rem' }}>
+                    Orientadora: Andreia Moura · {new Date().getFullYear()} — Uso exclusivo acadêmico
+                </p>
             </footer>
         </div>
     );
