@@ -11,7 +11,7 @@ const Conclusion = () => (
             transition={{ duration: 2, ease: 'easeOut' }}
             style={{
                 position: 'absolute', inset: 0, zIndex: 0,
-                backgroundImage: 'url("/loki-images/yggdrasil.png")',
+                backgroundImage: 'url("/loki-images/yggdrasil.jpg")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
