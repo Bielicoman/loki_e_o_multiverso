@@ -51,18 +51,31 @@ const Objective = () => {
                     opacity: 0.2,
                     borderRadius: '50%'
                 }}></div>
-                <p style={{
-                    fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
-                    lineHeight: 1.6,
-                    textAlign: 'center',
-                    fontStyle: 'italic',
-                    fontWeight: 300,
-                    letterSpacing: '0.03em',
-                    color: 'var(--text-color)',
-                    textShadow: '0 2px 10px rgba(0,0,0,0.5)'
-                }}>
-                    "Entender qual é o papel de Loki na interconectividade do universo compartilhado do MCU (Marvel Cinematic Universe)."
-                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+                    <img
+                        src="/loki-images/loki-the-god-of-mischief-2023-n8.jpg"
+                        alt="Loki MCU"
+                        style={{
+                            width: '100%',
+                            maxWidth: '400px',
+                            borderRadius: '16px',
+                            boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
+                            objectFit: 'cover'
+                        }}
+                    />
+                    <p style={{
+                        fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
+                        lineHeight: 1.6,
+                        textAlign: 'center',
+                        fontStyle: 'italic',
+                        fontWeight: 300,
+                        letterSpacing: '0.03em',
+                        color: 'var(--text-color)',
+                        textShadow: '0 2px 10px rgba(0,0,0,0.5)'
+                    }}>
+                        "Entender qual é o papel de Loki na interconectividade do universo compartilhado do MCU (Marvel Cinematic Universe)."
+                    </p>
+                </div>
             </div>
         </SectionWrapper>
     );

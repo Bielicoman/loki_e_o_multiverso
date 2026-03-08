@@ -5,37 +5,43 @@ const TimelineData = [
         year: "2011",
         title: "Thor",
         description: "Inicia como antagonista movido pela rejeição e busca por identidade.",
-        color: "#062011"
+        color: "#062011",
+        image: "/loki-images/thor.webp"
     },
     {
         year: "2012",
         title: "Vingadores",
         description: "Vilão central, simbolizando a ameaça externa que une os heróis.",
-        color: "#0a3512"
+        color: "#0a3512",
+        image: "/loki-images/los_vengadores_disney_plus_cd769592.jpeg"
     },
     {
         year: "2013",
         title: "Thor: Mundo Sombrio",
         description: "Atua como aliado ambíguo, vive a perda da mãe e mostra traços de redenção.",
-        color: "#184522"
+        color: "#184522",
+        image: "/loki-images/thor-wallpaper-5.jpg"
     },
     {
         year: "2017",
         title: "Thor: Ragnarok",
         description: "Assume o papel de trickster-herói, ajuda na salvação de Asgard e fortalece laços com Thor.",
-        color: "#268d33"
+        color: "#268d33",
+        image: "/loki-images/Thor-ragnarok.jpg"
     },
     {
         year: "2018",
         title: "Vingadores: Guerra Infinita",
         description: "Faz sua escolha final como herói, sacrificando-se em defesa do irmão.",
-        color: "#16be51"
+        color: "#16be51",
+        image: "/loki-images/thor-loki-death.avif"
     },
     {
         year: "2021",
         title: "LOKI (Série)",
         description: "Reescreve sua jornada, confronta suas variantes e torna-se o guardião do multiverso.",
-        color: "#ffd700" // Gold climax
+        color: "#ffd700", // Gold climax
+        image: "/loki-images/7633018.jpg"
     }
 ];
 
@@ -97,6 +103,18 @@ const Timeline = () => {
                                         position: 'relative'
                                     }}
                                 >
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        style={{
+                                            width: '100%',
+                                            height: '200px',
+                                            objectFit: 'cover',
+                                            borderRadius: '12px',
+                                            marginBottom: '1.5rem',
+                                            boxShadow: '0 10px 20px rgba(0,0,0,0.3)'
+                                        }}
+                                    />
                                     <span style={{ color: 'var(--color-accent)', fontWeight: 600, display: 'block', marginBottom: '0.75rem', letterSpacing: '0.05em' }}>{item.year}</span>
                                     <h3 style={{ marginBottom: '1rem', color: 'var(--color-light)', fontSize: '1.4rem' }}>{item.title}</h3>
                                     <p style={{ color: 'var(--text-color)', fontSize: '0.95rem', lineHeight: 1.6 }}>{item.description}</p>
