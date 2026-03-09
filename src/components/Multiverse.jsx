@@ -55,6 +55,7 @@ const Multiverse = () => {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: i * 0.15 }}
                                 whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                                className="themed-card"
                                 style={{
                                     borderRadius: '16px',
                                     overflow: 'hidden',

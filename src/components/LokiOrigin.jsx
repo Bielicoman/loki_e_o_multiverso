@@ -106,6 +106,7 @@ const LokiOrigin = () => (
                         viewport={{ once: true, margin: '-40px' }}
                         transition={{ duration: 0.6, delay: i * 0.1 }}
                         whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                        className="themed-card"
                         style={{
                             background: 'rgba(10, 22, 14, 0.85)',
                             border: '1px solid rgba(255,255,255,0.07)',

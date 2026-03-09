@@ -194,6 +194,15 @@ img {
     border-color: var(--card-border) !important;
 }
 
+/* Fix inner elements of themed cards in light mode that have hardcoded white borders/colors */
+[data-theme='light'] .themed-card p[style*='borderTop'] {
+    border-top-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme='light'] .themed-card span[style*='color'] {
+    color: var(--heading-color) !important;
+}
+
 /* Light mode: heading colors in sections that override them */
 [data-theme='light'] h2,
 [data-theme='light'] h3 {
