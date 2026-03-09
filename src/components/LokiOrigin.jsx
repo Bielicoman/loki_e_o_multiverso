@@ -18,7 +18,7 @@ const ORIGIN_STEPS = [
         color: '#52b788',
         title: 'O Vilão dos Quadrinhos',
         text: 'Em 1962, Stan Lee e Jack Kirby reinventaram Loki como filho adotivo de Odin e antagonista clássico de Thor. Ambicioso e genial, o Loki dos quadrinhos catalisa a criação dos próprios Vingadores no primeiro número da equipe, em 1963.',
-        image: '/loki-images/loki-comics-classic.png',
+        image: '/loki-images/loki-hq-comic.jpg',
         imagePos: 'center top',
     },
     {

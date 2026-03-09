@@ -14,16 +14,47 @@ import References from './components/References';
 import Controls from './components/Controls';
 import './App.css';
 
-// Gradient band that blends from one section color to the next
-const Fade = ({ from, to }) => (
+/**
+ * Visible section divider — a luminous green haze that pulses at the seam.
+ * Since all section backgrounds are near-#000, a simple color-to-color fade
+ * is invisible. Instead we use a radial glow that IS visible on dark backgrounds.
+ */
+const SectionDivider = ({ intensity = 1 }) => (
     <div style={{
-        height: '90px',
-        background: `linear-gradient(to bottom, ${from}, ${to})`,
-        pointerEvents: 'none',
-        margin: '-1px 0',          // overlap by 1px to avoid bright seams
+        height: '160px',
         position: 'relative',
-        zIndex: 0,
-    }} />
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        margin: '-1px 0',
+        background: '#000',
+    }}>
+        {/* Top black fade */}
+        <div style={{
+            position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), transparent)',
+            zIndex: 1,
+        }} />
+        {/* Central green glow */}
+        <div style={{
+            position: 'absolute', inset: 0,
+            background: `radial-gradient(ellipse 70% 60% at 50% 50%, rgba(82,183,136,${0.12 * intensity}) 0%, rgba(40,100,70,${0.06 * intensity}) 40%, transparent 70%)`,
+            zIndex: 2,
+        }} />
+        {/* Thin accent line at center */}
+        <div style={{
+            position: 'absolute', top: '50%', left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '180px', height: '1px',
+            background: `linear-gradient(to right, transparent, rgba(82,183,136,${0.35 * intensity}), transparent)`,
+            zIndex: 3,
+        }} />
+        {/* Bottom black fade */}
+        <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
+            zIndex: 1,
+        }} />
+    </div>
 );
 
 function App() {
@@ -43,41 +74,24 @@ function App() {
             <Controls theme={theme} toggleTheme={toggleTheme} />
 
             <main>
-                {/* Hero → Objective */}
                 <HeroSection />
-                <Fade from="#050d07" to="#080f0a" />
-
-                {/* Objective → Transmídia */}
+                <SectionDivider intensity={1.2} />
                 <Objective />
-                <Fade from="#080f0a" to="#0d1a10" />
-
-                {/* Transmídia → Origem */}
+                <SectionDivider intensity={1} />
                 <Transmedia />
-                <Fade from="#0d1a10" to="#020a05" />
-
-                {/* Origem → Multiverso */}
+                <SectionDivider intensity={1.3} />
                 <LokiOrigin />
-                <Fade from="#020a05" to="#060e08" />
-
-                {/* Multiverso → Metodologia */}
+                <SectionDivider intensity={1} />
                 <Multiverse />
-                <Fade from="#060e08" to="#050d07" />
-
-                {/* Metodologia → Evolução */}
+                <SectionDivider intensity={1.2} />
                 <Methodology />
-                <Fade from="#050d07" to="#080f0a" />
-
-                {/* Evolução → Conclusão */}
+                <SectionDivider intensity={1} />
                 <TreeTimeline />
-                <Fade from="#080f0a" to="#030b05" />
-
-                {/* Conclusão → Vídeo */}
+                <SectionDivider intensity={1.5} />
                 <Conclusion />
-                <Fade from="#030b05" to="#000000" />
-
+                <SectionDivider intensity={0.6} />
                 <GloriousVideo />
-                <Fade from="#000000" to="#060e08" />
-
+                <SectionDivider intensity={1} />
                 <References />
             </main>
         </div>

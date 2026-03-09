@@ -95,10 +95,10 @@ const Objective = () => {
                                         border: '1px solid rgba(230,194,0,0.2)',
                                         color: 'var(--color-accent)',
                                         borderRadius: '100px',
-                                        padding: '0.3rem 0.9rem',
-                                        fontSize: '0.78rem',
+                                        padding: '0.15rem 0.55rem',
+                                        fontSize: '0.62rem',
                                         fontWeight: 500,
-                                        letterSpacing: '0.03em',
+                                        letterSpacing: '0.02em',
                                     }}>{tag}</span>
                                 ))}
                             </div>
