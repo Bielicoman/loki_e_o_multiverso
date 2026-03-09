@@ -425,8 +425,8 @@ img {
     }
 
     /* Fix Hero Image Cropping */
-    #inicio img {
-        object-position: center 20% !important;
+    #inicio>div:first-child {
+        background-position: center 20% !important;
         /* Keep Loki's face in view */
     }
 
