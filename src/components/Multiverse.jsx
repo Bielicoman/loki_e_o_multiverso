@@ -46,7 +46,7 @@ const Multiverse = () => {
                     <div style={{ width: '60px', height: '3px', background: 'var(--color-accent)', margin: '2.5rem auto 4rem' }} />
 
                     {/* Cards */}
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '4rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem', marginBottom: '4rem' }}>
                         {cards.map((card, i) => (
                             <motion.div
                                 key={i}
@@ -54,23 +54,41 @@ const Multiverse = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.6, delay: i * 0.15 }}
-                                whileHover={{ y: -8 }}
+                                whileHover={{ y: -10, scale: 1.02 }}
                                 style={{
-                                    background: 'var(--glass-bg)',
-                                    border: '1px solid var(--glass-border)',
-                                    borderRadius: '20px',
+                                    position: 'relative',
+                                    borderRadius: '16px',
                                     overflow: 'hidden',
-                                    backdropFilter: 'blur(20px)',
-                                    boxShadow: '0 20px 40px rgba(0,0,0,0.3)',
+                                    boxShadow: '0 25px 50px rgba(0,0,0,0.55)',
+                                    cursor: 'default',
+                                    aspectRatio: '2 / 3',
                                 }}
                             >
-                                <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
-                                    <img src={card.image} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.7))' }} />
-                                </div>
-                                <div style={{ padding: '1.5rem' }}>
-                                    <h3 style={{ color: 'var(--color-accent)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem' }}>{card.title}</h3>
-                                    <p style={{ color: 'var(--color-gray)', fontSize: '0.9rem', lineHeight: 1.7, fontWeight: 300 }}>{card.desc}</p>
+                                {/* Full poster image */}
+                                <img
+                                    src={card.image}
+                                    alt={card.title}
+                                    style={{
+                                        width: '100%',
+                                        height: '100%',
+                                        objectFit: 'cover',
+                                        objectPosition: 'center top',
+                                        display: 'block',
+                                    }}
+                                />
+                                {/* Gradient overlay at bottom */}
+                                <div style={{
+                                    position: 'absolute', inset: 0,
+                                    background: 'linear-gradient(to bottom, transparent 45%, rgba(0,0,0,0.92) 100%)',
+                                }} />
+                                {/* Text over image */}
+                                <div style={{
+                                    position: 'absolute',
+                                    bottom: 0, left: 0, right: 0,
+                                    padding: '1.5rem 1.25rem 1.25rem',
+                                }}>
+                                    <h3 style={{ color: 'var(--color-accent)', fontSize: '1rem', fontWeight: 700, marginBottom: '0.5rem' }}>{card.title}</h3>
+                                    <p style={{ color: 'rgba(255,255,255,0.65)', fontSize: '0.78rem', lineHeight: 1.6, fontWeight: 300 }}>{card.desc}</p>
                                 </div>
                             </motion.div>
                         ))}
