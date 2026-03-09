@@ -57,7 +57,7 @@ const NODES = [
         title: 'Vingadores: Guerra Infinita',
         badge: 'Sacrifício Final',
         color: '#52b788',
-        image: '/loki-images/thor-in-avengers-infinity-war-new-8k-poster-hl.jpg',
+        image: '/loki-images/avengers-infinity-war-ensemble.jpg',
         desc: 'Sacrifica a própria vida em defesa do irmão Thor diante do Thanos. O trickster morre como herói — sua última encenação era a verdade.',
         side: 'left',
     },
@@ -141,10 +141,9 @@ const TreeTimeline = () => {
                             overflow: 'hidden',
                         }}>
                             <motion.div
+                                animate={{ scaleY: 1 }}
                                 initial={{ scaleY: 0 }}
-                                whileInView={{ scaleY: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 2, ease: 'easeInOut' }}
+                                transition={{ duration: 2.2, ease: 'easeInOut', delay: 0.4 }}
                                 style={{
                                     width: '2px',
                                     height: '100%',
@@ -154,6 +153,7 @@ const TreeTimeline = () => {
                             />
                         </div>
                     )}
+
 
                     {NODES.map((node, i) => {
                         const isLeft = node.side === 'left';

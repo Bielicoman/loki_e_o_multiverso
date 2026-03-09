@@ -90,7 +90,7 @@ const Conclusion = () => (
                     transition={{ delay: 0.4 }}
                     style={{
                         textAlign: 'center',
-                        maxWidth: '600px',
+                        maxWidth: '800px',
                         margin: '0 auto',
                         padding: '2.5rem 2rem',
                         background: 'rgba(0,0,0,0.5)',
@@ -102,7 +102,7 @@ const Conclusion = () => (
                     <img
                         src="/loki-images/loki-logo-freelogovectors.net_.png"
                         alt="Loki Logo"
-                        style={{ width: '120px', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 30px rgba(230,194,0,0.7)) brightness(1.2)' }}
+                        style={{ width: '120px', display: 'block', margin: '0 auto 1.5rem', filter: 'drop-shadow(0 0 30px rgba(230,194,0,0.7)) brightness(1.2)' }}
                     />
                     <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.2rem)', fontStyle: 'italic', color: 'var(--color-accent)', lineHeight: 1.75, fontWeight: 300, marginBottom: '0.75rem' }}>
                         "Eu sei o que quero, que tipo de deus preciso ser — por você, por todos nós."

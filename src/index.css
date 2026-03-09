@@ -216,6 +216,50 @@ img {
 }
 
 /* ══════════════════════════════════════════════════════
+   LIGHT MODE — Text readability overrides
+   !important needed to beat hardcoded rgba(255,255,255,X) inline styles
+══════════════════════════════════════════════════════ */
+
+/* Paragraph body text in light sections */
+[data-theme='light'] #objetivo p,
+[data-theme='light'] #transmidia p,
+[data-theme='light'] #origem-loki p,
+[data-theme='light'] #multiverso p,
+[data-theme='light'] #metodologia p,
+[data-theme='light'] #linha-do-tempo p,
+[data-theme='light'] #referencias p {
+    color: rgba(22, 22, 38, 0.72) !important;
+}
+
+/* Section heading color — dark for light mode */
+[data-theme='light'] #objetivo h2,
+[data-theme='light'] #objetivo h3,
+[data-theme='light'] #transmidia h2,
+[data-theme='light'] #transmidia h3,
+[data-theme='light'] #origem-loki h2,
+[data-theme='light'] #origem-loki h3,
+[data-theme='light'] #multiverso h2,
+[data-theme='light'] #multiverso h3,
+[data-theme='light'] #metodologia h2,
+[data-theme='light'] #metodologia h3,
+[data-theme='light'] #linha-do-tempo h2,
+[data-theme='light'] #linha-do-tempo h3,
+[data-theme='light'] #referencias h2,
+[data-theme='light'] #referencias h3 {
+    color: var(--heading-color) !important;
+}
+
+/* References — citation text uses rgba(255,255,255,X) hardcoded */
+[data-theme='light'] #referencias span:not([style*='color: var(--color-accent)']) {
+    color: rgba(22, 22, 38, 0.65) !important;
+}
+
+/* Light mode: NodeCard glass in TreeTimeline */
+[data-theme='light'] #linha-do-tempo [style*='glass-bg'] {
+    background: rgba(255, 255, 255, 0.88);
+}
+
+/* ══════════════════════════════════════════════════════
    PERFORMANCE
 ══════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
@@ -339,7 +383,7 @@ img {
     }
 }
 
-/* ── Mobile (≤ 768px) ── */
+/* ── Mobile (≤ 768px) — Compact streaming-app layout ── */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -357,46 +401,78 @@ img {
     .grid-3,
     .grid-2 {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 
     .container {
         padding: 0 1rem;
     }
 
-    /* Sections: reduce vertical padding */
+    /* Compact section padding — streaming app feel */
     section {
-        padding: 4rem 0 !important;
+        padding: 2.5rem 0 !important;
     }
 
     #inicio {
         padding: 0 !important;
+        min-height: 85svh !important;
     }
 
-    /* hero keeps full height */
-
-    /* Timeline: stack vertically */
-    .timeline-row {
-        grid-template-columns: 1fr !important;
-        gap: 0 !important;
+    /* Smaller section heading margin */
+    section h2 {
+        margin-bottom: 0.75rem !important;
     }
 
-    .timeline-center {
-        display: none !important;
+    /* Methodology: compress alternating rows */
+    #metodologia [style*='gap: 4rem'] {
+        gap: 2rem !important;
     }
 
-    .timeline-side {
-        padding: 0 !important;
-        justify-content: center !important;
+    #metodologia [style*='height: 300px'] {
+        height: 200px !important;
     }
 
-    /* LokiOrigin: reduce card image height */
+    #metodologia [style*='flexDirection: column'] {
+        gap: 2.5rem !important;
+    }
+
+    /* TreeTimeline: reduce row margin */
+    #linha-do-tempo {
+        padding: 3rem 0 !important;
+    }
+
+    /* LokiOrigin: reduce card image height for compact feel */
     .origin-img {
         aspect-ratio: 16/9 !important;
     }
 
-    /* Hero adjustments */
-    #inicio {
-        min-height: 100svh !important;
+    /* References: reduce padding */
+    #referencias .container {
+        padding: 0 0.75rem;
+    }
+
+    /* NodeCard image: smaller */
+    #linha-do-tempo img {
+        max-height: 130px !important;
+        object-fit: cover;
+    }
+
+    /* Transmedia cards: more compact */
+    #transmidia [style*='height: 280px'] {
+        height: 200px !important;
+    }
+
+    #transmidia [style*='padding: 1.75rem'] {
+        padding: 1.1rem !important;
+    }
+
+    /* GloriousVideo: smaller padding */
+    #glorioso-proposito {
+        padding: 1.5rem 0 !important;
+    }
+
+    #glorioso-proposito video {
+        max-height: 55vh !important;
     }
 }
 
