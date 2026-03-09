@@ -426,14 +426,14 @@ img {
 
     /* Fix Hero Image Cropping */
     #inicio>div:first-child {
-        background-position: center 20% !important;
-        /* Keep Loki's face in view */
+        background-position: 80% 20% !important;
+        /* Align to the right where his face is */
     }
 
     /* Smaller Base Typography */
     html {
-        font-size: 14px;
-        /* Globally shrinks all rem units */
+        font-size: 13px;
+        /* Globally shrinks all rem units drastically */
     }
 
     /* Smaller section heading margin and size */
