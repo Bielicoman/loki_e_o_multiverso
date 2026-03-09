@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const NAV_ITEMS = [
     { label: 'Objetivo', href: '#objetivo' },
@@ -15,17 +15,20 @@ const NAV_ITEMS = [
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState('');
-    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 60);
+        const onScroll = () => setScrolled(window.scrollY > 100);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     const scrollTo = (e, href) => {
         e.preventDefault();
-        setMenuOpen(false);
+        if (href === '#top') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            setActive('');
+            return;
+        }
         const el = document.querySelector(href);
         if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -35,73 +38,95 @@ const NavBar = () => {
 
     return (
         <motion.nav
-            initial={{ y: -80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            initial={{ y: -60, opacity: 0 }}
+            animate={{ y: 0, opacity: scrolled ? 1 : 0.55 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
             style={{
                 position: 'fixed',
-                top: '1rem',
+                top: '0.75rem',
                 left: '50%',
                 transform: 'translateX(-50%)',
                 zIndex: 9000,
                 display: 'flex',
                 alignItems: 'center',
-                gap: '0.25rem',
+                gap: '0.1rem',
                 background: scrolled
-                    ? 'rgba(5, 10, 8, 0.85)'
-                    : 'rgba(5, 10, 8, 0.5)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.08)',
+                    ? 'rgba(4, 8, 6, 0.75)'
+                    : 'rgba(4, 8, 6, 0.35)',
+                backdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.05)',
                 borderRadius: '100px',
-                padding: '0.45rem 0.75rem',
-                boxShadow: scrolled
-                    ? '0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05)'
-                    : '0 4px 20px rgba(0,0,0,0.3)',
-                transition: 'all 0.3s ease',
+                padding: '0.3rem 0.5rem',
+                boxShadow: scrolled ? '0 4px 24px rgba(0,0,0,0.35)' : 'none',
+                transition: 'all 0.4s ease',
                 maxWidth: 'calc(100vw - 2rem)',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
             }}
         >
-            {/* Logo dot */}
-            <div style={{
-                width: '8px', height: '8px', borderRadius: '50%',
-                background: '#52b788',
-                boxShadow: '0 0 8px #52b788',
-                marginRight: '0.5rem',
-                flexShrink: 0,
-            }} />
+            {/* Home button */}
+            <a
+                href="#top"
+                onClick={e => scrollTo(e, '#top')}
+                title="Voltar ao topo"
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '50%',
+                    background: 'rgba(82,183,136,0.12)',
+                    border: '1px solid rgba(82,183,136,0.2)',
+                    color: '#52b788',
+                    textDecoration: 'none',
+                    flexShrink: 0,
+                    marginRight: '0.25rem',
+                    transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => {
+                    e.currentTarget.style.background = 'rgba(82,183,136,0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(82,183,136,0.45)';
+                }}
+                onMouseLeave={e => {
+                    e.currentTarget.style.background = 'rgba(82,183,136,0.12)';
+                    e.currentTarget.style.borderColor = 'rgba(82,183,136,0.2)';
+                }}
+            >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 12L12 3l9 9" />
+                    <path d="M9 21V12h6v9" />
+                </svg>
+            </a>
+
+            {/* Separator */}
+            <div style={{ width: '1px', height: '14px', background: 'rgba(255,255,255,0.08)', marginRight: '0.25rem' }} />
 
             {/* Nav items */}
             {NAV_ITEMS.map((item) => (
                 <a
                     key={item.href}
                     href={item.href}
-                    onClick={(e) => scrollTo(e, item.href)}
+                    onClick={e => scrollTo(e, item.href)}
                     style={{
-                        color: active === item.href ? '#fff' : 'rgba(255,255,255,0.55)',
-                        fontSize: '0.72rem',
+                        color: active === item.href ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.38)',
+                        fontSize: '0.66rem',
                         fontWeight: active === item.href ? 600 : 400,
                         fontFamily: 'var(--font-body)',
                         letterSpacing: '0.04em',
                         textDecoration: 'none',
-                        padding: '0.4rem 0.75rem',
+                        padding: '0.32rem 0.6rem',
                         borderRadius: '100px',
-                        background: active === item.href ? 'rgba(82,183,136,0.15)' : 'transparent',
-                        border: active === item.href ? '1px solid rgba(82,183,136,0.3)' : '1px solid transparent',
-                        transition: 'all 0.2s ease',
+                        background: active === item.href ? 'rgba(255,255,255,0.07)' : 'transparent',
+                        transition: 'all 0.18s ease',
                         whiteSpace: 'nowrap',
                     }}
                     onMouseEnter={e => {
                         if (active !== item.href) {
-                            e.currentTarget.style.color = '#fff';
-                            e.currentTarget.style.background = 'rgba(255,255,255,0.06)';
+                            e.currentTarget.style.color = 'rgba(255,255,255,0.7)';
                         }
                     }}
                     onMouseLeave={e => {
                         if (active !== item.href) {
-                            e.currentTarget.style.color = 'rgba(255,255,255,0.55)';
-                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = 'rgba(255,255,255,0.38)';
                         }
                     }}
                 >
