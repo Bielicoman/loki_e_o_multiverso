@@ -42,9 +42,9 @@ const Objective = () => {
                             style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', boxShadow: '0 30px 60px rgba(0,0,0,0.5)' }}
                         >
                             <img
-                                src="/loki-images/ree0q964c50c1.jpg"
+                                src="/loki-images/12145980.webp"
                                 alt="Loki MCU"
-                                style={{ width: '100%', height: '480px', objectFit: 'cover', display: 'block' }}
+                                style={{ width: '100%', height: '480px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
                             />
                             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)' }} />
                             {/* badge */}
