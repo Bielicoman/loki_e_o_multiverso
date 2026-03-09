@@ -1,85 +1,139 @@
 import { useEffect, useRef } from 'react';
 
 const GlowCursor = () => {
-    const cursorRef = useRef(null);
+    const orbRef = useRef(null);
     const animRef = useRef(null);
-    const mousePos = useRef({ x: -200, y: -200 });
-    const isHovering = useRef(false);
+    const mousePos = useRef({ x: -300, y: -300 });
+    const stateRef = useRef('default'); // 'default' | 'hover' | 'text'
 
     useEffect(() => {
-        const cursor = cursorRef.current;
-        if (!cursor) return;
+        const orb = orbRef.current;
+        if (!orb) return;
 
+        // Hide ALL cursors — native and fallbacks
+        const styleTag = document.createElement('style');
+        styleTag.id = 'cursor-hide';
+        styleTag.textContent = `
+            *, *::before, *::after {
+                cursor: none !important;
+            }
+        `;
+        document.head.appendChild(styleTag);
+
+        // Track mouse position
         const onMove = (e) => {
             mousePos.current = { x: e.clientX, y: e.clientY };
         };
+        window.addEventListener('mousemove', onMove, { passive: true });
 
+        // rAF loop — instant, no lag
         const loop = () => {
             const { x, y } = mousePos.current;
-            cursor.style.transform = `translate(${x - 16}px, ${y - 16}px)`;
+            const size = stateRef.current === 'hover' ? 48
+                : stateRef.current === 'text' ? 4
+                    : 32;
+            const halfSize = size / 2;
+            orb.style.transform = `translate(${x - halfSize}px, ${y - halfSize}px)`;
+            orb.style.width = `${size}px`;
+            orb.style.height = `${size}px`;
             animRef.current = requestAnimationFrame(loop);
         };
-
-        window.addEventListener('mousemove', onMove, { passive: true });
         animRef.current = requestAnimationFrame(loop);
-        document.body.style.cursor = 'none';
 
-        // Scale on interactive elements
-        const onEnter = () => {
-            isHovering.current = true;
-            cursor.style.width = '42px';
-            cursor.style.height = '42px';
-            cursor.style.opacity = '0.9';
-        };
-        const onLeave = () => {
-            isHovering.current = false;
-            cursor.style.width = '32px';
-            cursor.style.height = '32px';
-            cursor.style.opacity = '0.75';
-        };
+        // Interactive: links, buttons
+        const setHover = () => { stateRef.current = 'hover'; applyState(orb, 'hover'); };
+        const unsetHover = () => { stateRef.current = 'default'; applyState(orb, 'default'); };
 
-        const interactive = document.querySelectorAll('a, button, [role="button"], input');
-        interactive.forEach(el => {
-            el.addEventListener('mouseenter', onEnter);
-            el.addEventListener('mouseleave', onLeave);
-        });
+        // Text elements
+        const setText = () => { stateRef.current = 'text'; applyState(orb, 'text'); };
+        const unsetText = () => { stateRef.current = 'default'; applyState(orb, 'default'); };
+
+        const addListeners = () => {
+            document.querySelectorAll('a, button, [role="button"], input[type="submit"], select').forEach(el => {
+                el.addEventListener('mouseenter', setHover);
+                el.addEventListener('mouseleave', unsetHover);
+            });
+            document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, span, li').forEach(el => {
+                el.addEventListener('mouseenter', setText);
+                el.addEventListener('mouseleave', unsetText);
+            });
+        };
+        addListeners();
+
+        // Re-add after react re-renders
+        const observer = new MutationObserver(addListeners);
+        observer.observe(document.body, { childList: true, subtree: true });
 
         return () => {
             window.removeEventListener('mousemove', onMove);
             cancelAnimationFrame(animRef.current);
-            document.body.style.cursor = '';
+            observer.disconnect();
+            document.getElementById('cursor-hide')?.remove();
         };
     }, []);
 
     return (
         <div
-            ref={cursorRef}
+            ref={orbRef}
             style={{
                 position: 'fixed',
-                zIndex: 99999,
-                width: '32px',
-                height: '32px',
+                zIndex: 999999,
                 top: 0,
                 left: 0,
+                width: '32px',
+                height: '32px',
                 borderRadius: '50%',
                 pointerEvents: 'none',
-                willChange: 'transform',
-                opacity: 0.75,
-                transition: 'width 0.2s ease, height 0.2s ease, opacity 0.2s ease',
+                willChange: 'transform, width, height',
+                transition: 'width 0.15s ease, height 0.15s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, border-radius 0.2s ease',
 
-                // The mystical glass orb
-                background: 'radial-gradient(circle at 35% 35%, rgba(255,255,255,0.35) 0%, rgba(120,200,160,0.18) 35%, rgba(60,120,100,0.08) 70%, transparent 100%)',
-                backdropFilter: 'blur(4px)',
-                border: '1px solid rgba(160,255,200,0.35)',
+                // Mystical glass orb
+                background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45) 0%, rgba(140,220,180,0.25) 30%, rgba(60,140,110,0.1) 65%, transparent 100%)',
+                backdropFilter: 'blur(6px)',
+                border: '1.5px solid rgba(180,255,220,0.5)',
                 boxShadow: `
-                    0 0 10px 2px rgba(82,183,136,0.35),
-                    0 0 24px 6px rgba(82,183,136,0.12),
-                    inset 0 1px 0 rgba(255,255,255,0.4),
-                    inset 0 -1px 0 rgba(0,0,0,0.1)
+                    0 0 12px 4px rgba(82,183,136,0.55),
+                    0 0 35px 10px rgba(82,183,136,0.2),
+                    0 0 70px 20px rgba(40,120,80,0.1),
+                    inset 0 1.5px 0 rgba(255,255,255,0.55),
+                    inset 0 -1px 0 rgba(0,0,0,0.12)
                 `,
             }}
+            id="mystical-cursor"
         />
     );
 };
+
+// Apply visual state changes based on hover type
+function applyState(orb, state) {
+    if (state === 'hover') {
+        orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.5) 0%, rgba(180,255,210,0.3) 30%, rgba(80,170,130,0.15) 65%, transparent 100%)';
+        orb.style.borderColor = 'rgba(200,255,230,0.7)';
+        orb.style.boxShadow = `
+            0 0 18px 6px rgba(82,183,136,0.75),
+            0 0 50px 18px rgba(82,183,136,0.3),
+            0 0 100px 30px rgba(40,120,80,0.15),
+            inset 0 2px 0 rgba(255,255,255,0.6)
+        `;
+        orb.style.borderRadius = '50%';
+    } else if (state === 'text') {
+        orb.style.background = 'rgba(180,255,220,0.6)';
+        orb.style.borderColor = 'rgba(180,255,220,0.8)';
+        orb.style.boxShadow = `0 0 10px 3px rgba(82,183,136,0.8), 0 0 25px 8px rgba(82,183,136,0.3)`;
+        orb.style.borderRadius = '2px';
+        orb.style.width = '3px';
+        orb.style.height = '22px';
+    } else {
+        orb.style.background = 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.45) 0%, rgba(140,220,180,0.25) 30%, rgba(60,140,110,0.1) 65%, transparent 100%)';
+        orb.style.borderColor = 'rgba(180,255,220,0.5)';
+        orb.style.boxShadow = `
+            0 0 12px 4px rgba(82,183,136,0.55),
+            0 0 35px 10px rgba(82,183,136,0.2),
+            0 0 70px 20px rgba(40,120,80,0.1),
+            inset 0 1.5px 0 rgba(255,255,255,0.55)
+        `;
+        orb.style.borderRadius = '50%';
+    }
+}
 
 export default GlowCursor;
