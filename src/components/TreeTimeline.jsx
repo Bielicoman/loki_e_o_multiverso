@@ -1,4 +1,19 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+
+// ── Responsive hook ───────────────────────────────────────────────────────────
+const useIsMobile = () => {
+    const [mobile, setMobile] = useState(() =>
+        typeof window !== 'undefined' ? window.innerWidth <= 768 : false
+    );
+    useEffect(() => {
+        const h = () => setMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', h, { passive: true });
+        return () => window.removeEventListener('resize', h);
+    }, []);
+    return mobile;
+};
+
 
 const NODES = [
     {
