@@ -25,7 +25,16 @@ const cards = [
 ];
 
 const Transmedia = () => (
-    <section id="transmidia" style={{ padding: '8rem 0', background: 'var(--color-secondary)', position: 'relative' }}>
+    <section id="transmidia" style={{ padding: '8rem 0', background: 'var(--color-secondary)', position: 'relative', overflow: 'hidden' }}>
+        {/* Atmospheric background */}
+        <div style={{
+            position: 'absolute', inset: 0, pointerEvents: 'none',
+            background: 'radial-gradient(ellipse 75% 55% at 50% 30%, rgba(82,183,136,0.07) 0%, transparent 70%)',
+        }} />
+        <div style={{
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '200px', pointerEvents: 'none',
+            background: 'linear-gradient(to top, rgba(2,10,5,0.6), transparent)',
+        }} />
         <div className="container">
             <motion.div
                 initial={{ opacity: 0, y: 40 }}

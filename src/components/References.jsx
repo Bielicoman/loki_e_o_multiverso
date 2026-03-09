@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const refsData = [
-    // Artigo article order (ABNT)
+// ── Data ──────────────────────────────────────────────────────────────────────
+
+const refs = [
     {
         text: 'ALZAMORA, G.; TARCIA, L. Convergência e transmídia: galáxias semânticas e narrativas emergentes em jornalismo. Brazilian Journalism Research, Brasília, v. 8, n. 1, p. 22-35, 2012.',
         url: 'https://bjr.sbpjor.org.br/bjr/article/view/355',
@@ -39,180 +41,259 @@ const refsData = [
         url: 'https://www.ponteseditores.com.br/',
     },
     {
-        text: 'RUIZ, G. O UNIVERSO TRIDIMENSIONAL DA MARVEL. 2020. TCC (Jornalismo) - ECA, USP, São Paulo, 2020.',
+        text: 'RUIZ, G. O UNIVERSO TRIDIMENSIONAL DA MARVEL. 2020. TCC (Jornalismo) – ECA, USP, São Paulo, 2020.',
         url: 'https://www.teses.usp.br/',
     },
     {
         text: 'SCOLARI, C. A. Narrativas Transmedia: Cuando todos los medios cuentan. Barcelona: Deusto, 2013.',
         url: 'https://www.deusto.es/es/inicio/publicaciones/ficha/isbn/9788423413591',
     },
-    // Filmografia
+];
+
+const filmo = [
     {
-        text: 'LOKI. Criador: Michael Waldron. [S.l.]: Marvel Studios, 2021–2023. Série de TV. Disney+.',
-        url: 'https://www.disneyplus.com/series/loki/6pARMvILBGzK',
-        isFilmo: true,
-    },
-    {
-        text: 'OS VINGADORES. Direção: Joss Whedon. Produção: Kevin Feige. [EUA]: Marvel Studios, 2012.',
-        url: 'https://www.marvel.com/movies/the-avengers',
-        isFilmo: true,
-    },
-    {
-        text: 'THOR. Direção: Kenneth Branagh. Produção: Kevin Feige. [EUA]: Marvel Studios, 2011.',
+        text: 'THOR. Direção: Kenneth Branagh. Produção: Kevin Feige. [EUA]: Marvel Studios, 2011. Disponível em: https://www.marvel.com/movies/thor',
         url: 'https://www.marvel.com/movies/thor',
-        isFilmo: true,
+        year: '2011',
     },
     {
-        text: 'THOR: MUNDO SOMBRIO. Direção: Alan Taylor. Produção: Kevin Feige. [EUA]: Marvel Studios, 2013.',
+        text: 'OS VINGADORES. Direção: Joss Whedon. Produção: Kevin Feige. [EUA]: Marvel Studios, 2012. Disponível em: https://www.marvel.com/movies/the-avengers',
+        url: 'https://www.marvel.com/movies/the-avengers',
+        year: '2012',
+    },
+    {
+        text: 'THOR: MUNDO SOMBRIO. Direção: Alan Taylor. Produção: Kevin Feige. [EUA]: Marvel Studios, 2013. Disponível em: https://www.marvel.com/movies/thor-the-dark-world',
         url: 'https://www.marvel.com/movies/thor-the-dark-world',
-        isFilmo: true,
+        year: '2013',
     },
     {
-        text: 'THOR: RAGNAROK. Direção: Taika Waititi. Produção: Kevin Feige. [EUA]: Marvel Studios, 2017.',
+        text: 'THOR: RAGNAROK. Direção: Taika Waititi. Produção: Kevin Feige. [EUA]: Marvel Studios, 2017. Disponível em: https://www.marvel.com/movies/thor-ragnarok',
         url: 'https://www.marvel.com/movies/thor-ragnarok',
-        isFilmo: true,
+        year: '2017',
     },
     {
-        text: 'VINGADORES: GUERRA INFINITA. Direção: Anthony e Joe Russo. Produção: Kevin Feige. [EUA]: Marvel Studios, 2018.',
+        text: 'VINGADORES: GUERRA INFINITA. Direção: Anthony e Joe Russo. Produção: Kevin Feige. [EUA]: Marvel Studios, 2018. Disponível em: https://www.marvel.com/movies/avengers-infinity-war',
         url: 'https://www.marvel.com/movies/avengers-infinity-war',
-        isFilmo: true,
+        year: '2018',
+    },
+    {
+        text: 'VINGADORES: ULTIMATO. Direção: Anthony e Joe Russo. Produção: Kevin Feige. [EUA]: Marvel Studios, 2019. Disponível em: https://www.marvel.com/movies/avengers-endgame',
+        url: 'https://www.marvel.com/movies/avengers-endgame',
+        year: '2019',
+    },
+    {
+        text: 'LOKI — TEMPORADA 1. Criador: Michael Waldron. [EUA]: Marvel Studios / Disney+, 2021. Série de TV. Disponível em: https://www.disneyplus.com/series/loki/6pARMvILBGzK',
+        url: 'https://www.disneyplus.com/series/loki/6pARMvILBGzK',
+        year: '2021',
+    },
+    {
+        text: 'HOMEM-FORMIGA E A VESPA: QUANTUMANIA. Direção: Peyton Reed. Produção: Kevin Feige. [EUA]: Marvel Studios, 2023. Disponível em: https://www.marvel.com/movies/ant-man-and-the-wasp-quantumania',
+        url: 'https://www.marvel.com/movies/ant-man-and-the-wasp-quantumania',
+        year: '2023',
+    },
+    {
+        text: 'LOKI — TEMPORADA 2. Criador: Eric Martin. [EUA]: Marvel Studios / Disney+, 2023. Série de TV. Disponível em: https://www.disneyplus.com/series/loki/6pARMvILBGzK',
+        url: 'https://www.disneyplus.com/series/loki/6pARMvILBGzK',
+        year: '2023',
     },
 ];
 
-const References = () => (
-    <section id="referencias" style={{ padding: '8rem 0', background: 'var(--bg-color)', position: 'relative' }}>
-        <div className="container">
-            <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.8 }}
-            >
-                {/* Header */}
-                <div style={{ marginBottom: '4rem' }}>
-                    <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Fontes Consultadas</span>
-                    <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: 'var(--color-light)', marginTop: '0.5rem', letterSpacing: '-0.02em' }}>Referências Bibliográficas</h2>
-                    <div style={{ width: '50px', height: '3px', background: 'var(--color-accent)', marginTop: '1.25rem' }} />
-                </div>
+// ── Copy button ───────────────────────────────────────────────────────────────
 
-                {/* Bibliographic refs */}
-                <div style={{ maxWidth: '860px', display: 'flex', flexDirection: 'column', gap: '0.6rem', marginBottom: '4rem' }}>
-                    {refsData.filter(r => !r.isFilmo).map((ref, i) => (
-                        <RefCard key={i} item={ref} />
-                    ))}
-                </div>
+const CopyBtn = ({ text }) => {
+    const [copied, setCopied] = useState(false);
+    const handleCopy = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        navigator.clipboard.writeText(text).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    };
+    return (
+        <button
+            onClick={handleCopy}
+            title="Copiar citação"
+            style={{
+                flexShrink: 0,
+                background: copied ? 'rgba(82,183,136,0.18)' : 'rgba(255,255,255,0.04)',
+                border: `1px solid ${copied ? 'rgba(82,183,136,0.5)' : 'rgba(255,255,255,0.1)'}`,
+                borderRadius: '8px',
+                color: copied ? '#52b788' : 'rgba(255,255,255,0.4)',
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.35rem',
+                fontSize: '0.68rem',
+                fontWeight: 600,
+                letterSpacing: '0.04em',
+                padding: '0.35rem 0.7rem',
+                transition: 'all 0.22s ease',
+                whiteSpace: 'nowrap',
+                alignSelf: 'flex-start',
+                marginTop: '0.1rem',
+            }}
+        >
+            {copied ? (
+                <>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                    Copiado
+                </>
+            ) : (
+                <>
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                    </svg>
+                    Copiar
+                </>
+            )}
+        </button>
+    );
+};
 
-                {/* Filmografia header */}
-                <div style={{ marginBottom: '2rem' }}>
-                    <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Material Audiovisual</span>
-                    <h3 style={{ fontSize: '1.6rem', fontWeight: 700, color: 'var(--color-light)', marginTop: '0.4rem' }}>Filmografia</h3>
-                    <div style={{ width: '40px', height: '2px', background: 'var(--color-accent)', marginTop: '0.75rem' }} />
-                </div>
+// ── Single reference row ──────────────────────────────────────────────────────
 
-                <div style={{ maxWidth: '860px', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-                    {refsData.filter(r => r.isFilmo).map((ref, i) => (
-                        <RefCard key={i} item={ref} />
-                    ))}
-                </div>
-
-                {/* Instagram + Credit */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.4 }}
-                    style={{
-                        marginTop: '6rem',
-                        paddingTop: '4rem',
-                        borderTop: '1px solid var(--glass-border)',
-                        textAlign: 'center',
-                    }}
-                >
-                    <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-                        <a href="https://www.instagram.com/alexascencioai" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'transform 0.2s ease' }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-6px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-                            <div style={{ position: 'relative', width: '72px', height: '72px' }}>
-                                <img src="/loki-images/alex-profile.jpg" alt="Alex Ascencio" style={{ width: '72px', height: '72px', borderRadius: '50%', objectFit: 'cover', display: 'block', border: '2px solid rgba(230,194,0,0.5)' }} />
-                                <div style={{ position: 'absolute', bottom: '-2px', right: '-2px', width: '22px', height: '22px', borderRadius: '50%', background: 'linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid var(--bg-color)' }}>
-                                    <svg width="11" height="11" fill="#fff" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-                                </div>
-                            </div>
-                            <div style={{ textAlign: 'center' }}>
-                                <p style={{ color: 'var(--color-light)', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.15rem' }}>Alex Ascencio</p>
-                                <p style={{ color: 'var(--color-accent)', fontSize: '0.78rem' }}>@alexascencioai</p>
-                            </div>
-                        </a>
-
-                        <a href="https://www.instagram.com/thiagoo_bandeira" target="_blank" rel="noopener noreferrer" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', transition: 'transform 0.2s ease' }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-6px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
-                            <div style={{ position: 'relative', width: '72px', height: '72px' }}>
-                                <img src="/loki-images/thiago-profile.jpg" alt="Thiago Bandeira" style={{ width: '72px', height: '72px', borderRadius: '50%', objectFit: 'cover', display: 'block', border: '2px solid rgba(230,194,0,0.5)' }} />
-                                <div style={{ position: 'absolute', bottom: '-2px', right: '-2px', width: '22px', height: '22px', borderRadius: '50%', background: 'linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid var(--bg-color)' }}>
-                                    <svg width="11" height="11" fill="#fff" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-                                </div>
-                            </div>
-                            <div style={{ textAlign: 'center' }}>
-                                <p style={{ color: 'var(--color-light)', fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.15rem' }}>Thiago Bandeira</p>
-                                <p style={{ color: 'var(--color-accent)', fontSize: '0.78rem' }}>@thiagoo_bandeira</p>
-                            </div>
-                        </a>
-                    </div>
-
-                    <p style={{ color: 'var(--color-gray)', fontSize: '0.82rem', letterSpacing: '0.04em', marginBottom: '0.4rem' }}>
-                        Rádio TV do UNASP EC · Orientadora: Andreia Moura
-                    </p>
-                    <p style={{ color: 'rgba(255,255,255,0.25)', fontSize: '0.78rem', letterSpacing: '0.06em' }}>
-                        © 2026 Alex Ascencio
-                    </p>
-                </motion.div>
-            </motion.div>
-        </div>
-    </section>
-);
-
-const RefCard = ({ item }) => (
-    <motion.a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        initial={{ opacity: 0, x: -15 }}
+const RefRow = ({ item, index, accent }) => (
+    <motion.div
+        initial={{ opacity: 0, x: -12 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.35 }}
-        whileHover={{ x: 5 }}
+        transition={{ duration: 0.3, delay: index * 0.04 }}
         style={{
             display: 'flex',
             gap: '1rem',
             alignItems: 'flex-start',
-            padding: '1rem 1.4rem',
-            background: 'var(--glass-bg)',
-            border: '1px solid var(--glass-border)',
-            borderRadius: '12px',
-            backdropFilter: 'blur(15px)',
-            textDecoration: 'none',
-            transition: 'all 0.22s ease',
-            cursor: 'pointer',
+            padding: '0.95rem 1.2rem',
+            background: 'rgba(255,255,255,0.02)',
+            border: '1px solid rgba(255,255,255,0.05)',
+            borderRadius: '10px',
+            transition: 'border-color 0.2s ease',
         }}
-        onMouseEnter={e => {
-            e.currentTarget.style.background = 'rgba(230,194,0,0.04)';
-            e.currentTarget.style.borderColor = 'rgba(230,194,0,0.22)';
-        }}
-        onMouseLeave={e => {
-            e.currentTarget.style.background = 'var(--glass-bg)';
-            e.currentTarget.style.borderColor = 'var(--glass-border)';
-        }}
+        onMouseEnter={e => e.currentTarget.style.borderColor = `${accent}30`}
+        onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'}
     >
+        {/* Number */}
+        <span style={{
+            flexShrink: 0,
+            width: '26px',
+            height: '26px',
+            borderRadius: '6px',
+            background: `${accent}18`,
+            border: `1px solid ${accent}33`,
+            color: accent,
+            fontSize: '0.65rem',
+            fontWeight: 700,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: '0.05rem',
+        }}>{index + 1}</span>
+
+        {/* Text */}
         <div style={{ flex: 1 }}>
-            <p style={{ color: 'var(--color-gray)', fontSize: '0.85rem', lineHeight: 1.65, fontFamily: 'var(--font-body)', fontWeight: 400 }}>
+            <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: '0.82rem', lineHeight: 1.7, fontWeight: 400 }}>
                 {item.text}
             </p>
+            <a
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => e.stopPropagation()}
+                style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.3rem',
+                    color: accent,
+                    fontSize: '0.7rem',
+                    marginTop: '0.45rem',
+                    textDecoration: 'none',
+                    opacity: 0.75,
+                    transition: 'opacity 0.15s',
+                }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '1'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '0.75'}
+            >
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                    <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+                {item.url.replace(/^https?:\/\//, '').split('/')[0]}
+            </a>
+            {item.year && (
+                <span style={{ marginLeft: '0.75rem', color: 'rgba(255,255,255,0.2)', fontSize: '0.68rem' }}>
+                    {item.year}
+                </span>
+            )}
         </div>
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(230,194,0,0.4)" strokeWidth="1.5" style={{ flexShrink: 0, marginTop: '0.3rem' }}>
-            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-            <polyline points="15 3 21 3 21 9" />
-            <line x1="10" y1="14" x2="21" y2="3" />
-        </svg>
-    </motion.a>
+
+        {/* Copy button */}
+        <CopyBtn text={item.text} />
+    </motion.div>
+);
+
+// ── Section header helper ─────────────────────────────────────────────────────
+
+const SectionHead = ({ label, title, accent }) => (
+    <div style={{ marginBottom: '2rem' }}>
+        <span style={{ color: accent, fontSize: '0.75rem', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase' }}>{label}</span>
+        <h2 style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.4rem)', fontWeight: 800, color: '#fff', marginTop: '0.4rem', letterSpacing: '-0.02em' }}>{title}</h2>
+        <div style={{ width: '40px', height: '2px', background: accent, marginTop: '1rem' }} />
+    </div>
+);
+
+// ── Main component ────────────────────────────────────────────────────────────
+
+const References = () => (
+    <section id="referencias" style={{ padding: '8rem 0', background: 'var(--bg-color)', position: 'relative' }}>
+        <div className="container">
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.8 }}>
+
+                {/* ── Bibliographic references ── */}
+                <SectionHead label="Fontes Consultadas" title="Referências Bibliográficas" accent="var(--color-accent)" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginBottom: '5rem', maxWidth: '900px' }}>
+                    {refs.map((r, i) => <RefRow key={i} item={r} index={i} accent="#e6c200" />)}
+                </div>
+
+                {/* ── Filmography ── */}
+                <SectionHead label="Material Audiovisual" title="Filmografia" accent="#52b788" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.55rem', marginBottom: '5rem', maxWidth: '900px' }}>
+                    {filmo.map((r, i) => <RefRow key={i} item={r} index={i} accent="#52b788" />)}
+                </div>
+
+                {/* ── Credits ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 }}
+                    style={{ paddingTop: '3.5rem', borderTop: '1px solid var(--glass-border)', textAlign: 'center' }}
+                >
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+                        {[
+                            { href: 'https://www.instagram.com/alexascencioai', img: '/loki-images/alex-profile.jpg', name: 'Alex Ascencio', handle: '@alexascencioai' },
+                            { href: 'https://www.instagram.com/thiagoo_bandeira', img: '/loki-images/thiago-profile.jpg', name: 'Thiago Bandeira', handle: '@thiagoo_bandeira' },
+                        ].map(({ href, img, name, handle }) => (
+                            <a key={name} href={href} target="_blank" rel="noopener noreferrer"
+                                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem', textDecoration: 'none', transition: 'transform 0.2s ease' }}
+                                onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+                                onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                            >
+                                <img src={img} alt={name} style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', border: '2px solid rgba(230,194,0,0.4)' }} />
+                                <div style={{ textAlign: 'center' }}>
+                                    <p style={{ color: 'var(--color-light)', fontWeight: 600, fontSize: '0.85rem', marginBottom: '0.1rem' }}>{name}</p>
+                                    <p style={{ color: 'var(--color-accent)', fontSize: '0.72rem' }}>{handle}</p>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                    <p style={{ color: 'var(--color-gray)', fontSize: '0.8rem', letterSpacing: '0.04em', marginBottom: '0.35rem' }}>
+                        Rádio TV do UNASP EC · Orientadora: Andreia Moura
+                    </p>
+                    <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.75rem', letterSpacing: '0.06em' }}>© 2026 Alex Ascencio</p>
+                </motion.div>
+            </motion.div>
+        </div>
+    </section>
 );
 
 export default References;

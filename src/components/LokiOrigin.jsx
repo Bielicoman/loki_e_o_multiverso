@@ -139,25 +139,6 @@ const LokiOrigin = () => (
                                     display: 'block',
                                 }}
                             />
-                            {/* Gradient */}
-                            <div style={{
-                                position: 'absolute', inset: 0,
-                                background: 'linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(10,22,14,0.95) 100%)',
-                            }} />
-
-                            {/* Roman numeral */}
-                            <span style={{
-                                position: 'absolute',
-                                top: '0.9rem',
-                                right: '0.9rem',
-                                fontFamily: 'Georgia, serif',
-                                fontSize: '1.4rem',
-                                fontWeight: 700,
-                                color: step.color,
-                                opacity: 0.85,
-                                textShadow: `0 0 20px ${step.color}`,
-                                lineHeight: 1,
-                            }}>{step.numeral}</span>
                         </div>
 
                         {/* Content */}
