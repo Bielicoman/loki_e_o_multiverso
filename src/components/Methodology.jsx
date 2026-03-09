@@ -17,7 +17,7 @@ const METHODOLOGY_ITEMS = [
         num: '03',
         title: 'Análise do Discurso',
         desc: 'Aplicação dos conceitos pêcheutianos para identificar como as falas e ações de Loki constroem sentido conector entre as narrativas do MCU.',
-        image: '/loki-images/ree0q964c50c1.jpg',
+        image: '/loki-images/thor-in-avengers-infinity-war-new-8k-poster-hl.jpg',
     },
 ];
 
