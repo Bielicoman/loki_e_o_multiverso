@@ -5,19 +5,19 @@ const METHODOLOGY_ITEMS = [
         num: '01',
         title: 'Pesquisa Bibliográfica',
         desc: 'Fundamentação teórica em Henry Jenkins (transmídia), Joseph Campbell (monomito), Michel Pêcheux (análise de discurso) e teóricos do universo narrativo compartilhado.',
-        image: '/loki-images/Screenshot 2025-05-27 211013.png',
+        image: '/loki-images/wp3251912.jpg',
     },
     {
         num: '02',
         title: 'Análise Fílmica',
         desc: 'Estudo das aparições de Loki em Thor (2011), Vingadores (2012), Thor: Mundo Sombrio (2013), Ragnarok (2017), Guerra Infinita (2018) e Série Loki (2021–2023).',
-        image: '/loki-images/7633145.jpg',
+        image: '/loki-images/Avengers-Wallpaper-4-715x402.jpg',
     },
     {
         num: '03',
         title: 'Análise do Discurso',
         desc: 'Aplicação dos conceitos pêcheutianos para identificar como as falas e ações de Loki constroem sentido conector entre as narrativas do MCU.',
-        image: '/loki-images/lokiseason2-episode6-endingexplained.jpg',
+        image: '/loki-images/ree0q964c50c1.jpg',
     },
 ];
 
