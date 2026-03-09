@@ -28,7 +28,7 @@ const ORIGIN_STEPS = [
         color: '#40916c',
         title: 'O Anti-Herói Trágico',
         text: 'Tom Hiddleston transformou Loki no personagem mais complexo do UCM. De vilão em Thor (2011) a anti-herói trágico — filho rejeitado, deus sem reino. Seu sucesso criou uma demanda narrativa que resultou em uma série própria uma década depois.',
-        image: '/loki-images/7633145.jpg',
+        image: '/loki-images/loki-mcu-smile.jpg',
         imagePos: 'center top',
     },
     {
@@ -38,7 +38,7 @@ const ORIGIN_STEPS = [
         color: '#ffd700',
         title: 'Guardião do Multiverso',
         text: 'Na série Loki, ele descobre existir além do tempo linear. Ao enfrentar a TVA e suas variantes, parte da busca pelo poder pessoal para aceitar um propósito cósmico — tornando-se o único ser capaz de segurar Yggdrasil: o multiverso inteiro.',
-        image: '/loki-images/lokiseason2-episode6-endingexplained.jpg',
+        image: '/loki-images/loki-guardian-lightning.jpg',
         imagePos: 'center',
     },
 ];
@@ -125,11 +125,11 @@ const LokiOrigin = () => (
                         onMouseLeave={e => e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.5)'}
                     >
                         {/* Image */}
-                        <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
+                        <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative', background: '#060c09' }}>
                             <motion.img
                                 src={step.image}
                                 alt={step.title}
-                                whileHover={{ scale: 1.06 }}
+                                whileHover={{ scale: 1.04 }}
                                 transition={{ duration: 0.5 }}
                                 style={{
                                     width: '100%',

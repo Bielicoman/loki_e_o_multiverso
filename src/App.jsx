@@ -15,44 +15,21 @@ import Controls from './components/Controls';
 import './App.css';
 
 /**
- * Visible section divider — a luminous green haze that pulses at the seam.
- * Since all section backgrounds are near-#000, a simple color-to-color fade
- * is invisible. Instead we use a radial glow that IS visible on dark backgrounds.
+ * Elegant minimal section divider — a single thin glowing line.
  */
-const SectionDivider = ({ intensity = 1 }) => (
+const SectionDivider = () => (
     <div style={{
-        height: '160px',
-        position: 'relative',
-        overflow: 'hidden',
+        height: '48px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
         pointerEvents: 'none',
-        margin: '-1px 0',
-        background: '#000',
+        background: 'transparent',
     }}>
-        {/* Top black fade */}
         <div style={{
-            position: 'absolute', top: 0, left: 0, right: 0, height: '50%',
-            background: 'linear-gradient(to bottom, rgba(0,0,0,0.9), transparent)',
-            zIndex: 1,
-        }} />
-        {/* Central green glow */}
-        <div style={{
-            position: 'absolute', inset: 0,
-            background: `radial-gradient(ellipse 70% 60% at 50% 50%, rgba(82,183,136,${0.12 * intensity}) 0%, rgba(40,100,70,${0.06 * intensity}) 40%, transparent 70%)`,
-            zIndex: 2,
-        }} />
-        {/* Thin accent line at center */}
-        <div style={{
-            position: 'absolute', top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: '180px', height: '1px',
-            background: `linear-gradient(to right, transparent, rgba(82,183,136,${0.35 * intensity}), transparent)`,
-            zIndex: 3,
-        }} />
-        {/* Bottom black fade */}
-        <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%',
-            background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)',
-            zIndex: 1,
+            width: '160px',
+            height: '1px',
+            background: 'linear-gradient(to right, transparent, rgba(82,183,136,0.45), transparent)',
         }} />
     </div>
 );
