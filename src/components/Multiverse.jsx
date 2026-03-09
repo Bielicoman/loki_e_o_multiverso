@@ -4,19 +4,16 @@ const Multiverse = () => {
     const cards = [
         {
             title: 'Teoria Quântica',
-            icon: '⚛️',
             image: '/loki-images/wp4503077.jpg',
             desc: 'Realidades paralelas originadas a partir de diferentes escolhas e colapsos de função de onda. (Ex: Homem Formiga e Vespa: Quantumania)',
         },
         {
             title: 'Teoria Ficcional',
-            icon: '📖',
             image: '/loki-images/marvel-cinematic-universe-desktop-4k-6qlgc2a94a7h99sx.jpg',
             desc: 'Multiplicidade de mundos possíveis dentro da linguagem narrativa e especulativa. (Ex: Homem Aranha: Sem volta pra casa)',
         },
         {
             title: 'Ramificação Temporal',
-            icon: '🌿',
             image: '/loki-images/lokiseason2-episode6-endingexplained.jpg',
             desc: '"Cada escolha ou evento pode criar nova linha do tempo, originando um novo universo" – estrutura mantida pela série Loki.',
         },
@@ -70,7 +67,6 @@ const Multiverse = () => {
                                 <div style={{ position: 'relative', height: '180px', overflow: 'hidden' }}>
                                     <img src={card.image} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.7))' }} />
-                                    <span style={{ position: 'absolute', bottom: '1rem', left: '1.25rem', fontSize: '1.5rem' }}>{card.icon}</span>
                                 </div>
                                 <div style={{ padding: '1.5rem' }}>
                                     <h3 style={{ color: 'var(--color-accent)', fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.75rem' }}>{card.title}</h3>
