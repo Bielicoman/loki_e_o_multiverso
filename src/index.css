@@ -442,14 +442,40 @@ img {
         gap: 2.5rem !important;
     }
 
+    /* ── Netflix-style Horizontal Scroll for Cards ── */
+    .mobile-scrolling-row {
+        display: flex !important;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 1.5rem;
+        margin: 0 -1rem;
+        /* Edge-to-edge scroll */
+        padding-left: 1rem;
+        padding-right: 1.5rem;
+        gap: 1.25rem !important;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        /* Firefox */
+    }
+
+    .mobile-scrolling-row::-webkit-scrollbar {
+        display: none;
+        /* Chrome/Safari */
+    }
+
+    .mobile-scrolling-row>div {
+        min-width: 72vw !important;
+        /* Netflix poster width */
+        max-width: 320px !important;
+        scroll-snap-align: center;
+        flex-shrink: 0;
+    }
+
     /* TreeTimeline: reduce row margin */
     #linha-do-tempo {
         padding: 3rem 0 !important;
-    }
-
-    /* LokiOrigin: reduce card image height for compact feel */
-    .origin-img {
-        aspect-ratio: 16/9 !important;
     }
 
     /* References: reduce padding */

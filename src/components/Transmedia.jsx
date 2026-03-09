@@ -48,7 +48,7 @@ const Transmedia = () => (
                     <div style={{ width: '50px', height: '3px', background: 'var(--color-accent)', marginTop: '1.25rem' }} />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: '2rem' }}>
+                <div className="mobile-scrolling-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))', gap: '2rem' }}>
                     {cards.map((card, i) => (
                         <motion.div
                             key={i}

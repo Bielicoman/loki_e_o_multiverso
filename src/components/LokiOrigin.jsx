@@ -97,7 +97,7 @@ const LokiOrigin = () => (
                 </p>
             </motion.div>
 
-            <div className="grid-4">
+            <div className="grid-4 mobile-scrolling-row">
                 {ORIGIN_STEPS.map((step, i) => (
                     <motion.div
                         key={i}
