@@ -13,36 +13,6 @@ const GloriousVideo = () => {
                 overflow: 'hidden',
             }}
         >
-            {/* Label */}
-            <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-                style={{
-                    position: 'absolute',
-                    top: '2rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    zIndex: 10,
-                    textAlign: 'center',
-                }}
-            >
-                <span style={{
-                    background: 'rgba(0,0,0,0.6)',
-                    backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(230,194,0,0.3)',
-                    color: 'var(--color-accent)',
-                    fontSize: '0.75rem',
-                    fontWeight: 700,
-                    letterSpacing: '0.2em',
-                    textTransform: 'uppercase',
-                    padding: '0.5rem 1.5rem',
-                    borderRadius: '100px',
-                }}>
-                    Glorioso Propósito
-                </span>
-            </motion.div>
 
             {/* Video — autoplay, loop, muted, no controls */}
             <video
