@@ -180,9 +180,6 @@ img {
     background: var(--color-secondary) !important;
 }
 
-[data-theme='light'] #glorioso-proposito {
-    background: #1a1a1a !important;
-}
 
 [data-theme='light'] #referencias {
     background: var(--bg-color);

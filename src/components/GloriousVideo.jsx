@@ -1,7 +1,7 @@
 const GloriousVideo = () => (
     <section
         id="glorioso-proposito"
-        style={{ position: 'relative', background: '#000', padding: '3rem 0' }}
+        style={{ position: 'relative', background: 'var(--bg-color)', padding: '3rem 0' }}
     >
         <div style={{
             maxWidth: '920px',
