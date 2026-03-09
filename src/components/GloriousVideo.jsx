@@ -44,23 +44,29 @@ const GloriousVideo = () => {
                 </span>
             </motion.div>
 
-            {/* Video */}
+            {/* Video — autoplay, loop, muted, no controls */}
             <video
                 ref={videoRef}
                 src="/glorioso-proposito.mp4"
                 autoPlay
                 muted
-                loop={false}
+                loop
                 playsInline
-                controls
                 style={{
                     width: '100%',
                     display: 'block',
                     maxHeight: '85vh',
                     objectFit: 'contain',
                     background: '#000',
+                    animation: 'videoFade 1.2s ease-in-out',
                 }}
             />
+            <style>{`
+                @keyframes videoFade {
+                    from { opacity: 0; }
+                    to   { opacity: 1; }
+                }
+            `}</style>
 
             {/* Bottom gradient */}
             <div style={{
