@@ -14,12 +14,23 @@ import References from './components/References';
 import Controls from './components/Controls';
 import './App.css';
 
+// Gradient band that blends from one section color to the next
+const Fade = ({ from, to }) => (
+    <div style={{
+        height: '90px',
+        background: `linear-gradient(to bottom, ${from}, ${to})`,
+        pointerEvents: 'none',
+        margin: '-1px 0',          // overlap by 1px to avoid bright seams
+        position: 'relative',
+        zIndex: 0,
+    }} />
+);
+
 function App() {
     const [theme, setTheme] = useState('dark');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', theme);
-        // Global smooth scroll
         document.documentElement.style.scrollBehavior = 'smooth';
     }, [theme]);
 
@@ -32,37 +43,41 @@ function App() {
             <Controls theme={theme} toggleTheme={toggleTheme} />
 
             <main>
+                {/* Hero → Objective */}
                 <HeroSection />
+                <Fade from="#050d07" to="#080f0a" />
 
-                {/* Gradient transition */}
-                <div style={{ height: '4px', background: 'linear-gradient(to right, #1a2e22, #52b78822, #1a2e22)' }} />
-
+                {/* Objective → Transmídia */}
                 <Objective />
+                <Fade from="#080f0a" to="#0d1a10" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, transparent, #40916c33, transparent)' }} />
-
+                {/* Transmídia → Origem */}
                 <Transmedia />
+                <Fade from="#0d1a10" to="#020a05" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, #0a1a10, #2d6a4f44, #0a1a10)' }} />
-
+                {/* Origem → Multiverso */}
                 <LokiOrigin />
+                <Fade from="#020a05" to="#060e08" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, transparent, #52b78833, transparent)' }} />
-
+                {/* Multiverso → Metodologia */}
                 <Multiverse />
+                <Fade from="#060e08" to="#050d07" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, #050e08, #1b432244, #050e08)' }} />
-
+                {/* Metodologia → Evolução */}
                 <Methodology />
+                <Fade from="#050d07" to="#080f0a" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, transparent, #40916c33, transparent)' }} />
-
+                {/* Evolução → Conclusão */}
                 <TreeTimeline />
+                <Fade from="#080f0a" to="#030b05" />
 
-                <div style={{ height: '4px', background: 'linear-gradient(to right, #0a1a10, #52b78822, #0a1a10)' }} />
-
+                {/* Conclusão → Vídeo */}
                 <Conclusion />
+                <Fade from="#030b05" to="#000000" />
+
                 <GloriousVideo />
+                <Fade from="#000000" to="#060e08" />
+
                 <References />
             </main>
         </div>

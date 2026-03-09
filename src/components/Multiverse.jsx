@@ -4,17 +4,17 @@ const Multiverse = () => {
     const cards = [
         {
             title: 'Teoria Quântica',
-            image: '/loki-images/wp4503077.jpg',
+            image: '/loki-images/quantumania.jpg',
             desc: 'Realidades paralelas originadas a partir de diferentes escolhas e colapsos de função de onda. (Ex: Homem Formiga e Vespa: Quantumania)',
         },
         {
             title: 'Teoria Ficcional',
-            image: '/loki-images/marvel-cinematic-universe-desktop-4k-6qlgc2a94a7h99sx.jpg',
+            image: '/loki-images/spiderman-no-way-home.jpg',
             desc: 'Multiplicidade de mundos possíveis dentro da linguagem narrativa e especulativa. (Ex: Homem Aranha: Sem volta pra casa)',
         },
         {
             title: 'Ramificação Temporal',
-            image: '/loki-images/lokiseason2-episode6-endingexplained.jpg',
+            image: '/loki-images/loki-s2-temporal.jpg',
             desc: '"Cada escolha ou evento pode criar nova linha do tempo, originando um novo universo" – estrutura mantida pela série Loki.',
         },
     ];
