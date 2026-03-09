@@ -117,7 +117,7 @@ const HeroSection = () => {
                         fontWeight: 300,
                     }}
                 >
-                    Como o Deus das Mentiras se tornou a chave narrativa do maior universo compartilhado do cinema. Um estudo sobre interconectividade, transmídia e identidade no MCU.
+                    Como o deus das mentiras se tornou a chave narrativa do maior universo compartilhado do cinema. Um estudo sobre interconectividade, transmídia e identidade no MCU.
                 </motion.p>
 
                 {/* Authors */}
@@ -134,7 +134,7 @@ const HeroSection = () => {
                         Alex Ascencio &amp; Thiago Bandeira
                     </p>
                     <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.45)' }}>
-                        Orientadora: Andreia Moura · UNASP EC
+                        Orientadora: Andreia Moura · UNASP EC · <strong style={{ color: 'rgba(255,255,255,0.65)' }}>2025</strong>
                     </p>
                 </motion.div>
 

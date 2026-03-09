@@ -50,7 +50,7 @@ const Conclusion = () => (
                 {/* Header */}
                 <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
                     <span style={{ color: 'var(--color-accent)', fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Considerações Finais</span>
-                    <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontWeight: 800, color: '#fff', marginTop: '0.5rem', letterSpacing: '-0.02em', textShadow: '0 0 40px rgba(100,255,120,0.3)' }}>O Deus das Histórias</h2>
+                    <h2 style={{ fontSize: 'clamp(2rem, 5vw, 4rem)', fontWeight: 800, color: '#fff', marginTop: '0.5rem', letterSpacing: '-0.02em', textShadow: '0 0 40px rgba(100,255,120,0.3)' }}>o deus das histórias</h2>
                     <div style={{ width: '60px', height: '3px', background: 'var(--color-accent)', margin: '1.25rem auto 0' }} />
                 </div>
 
@@ -104,10 +104,10 @@ const Conclusion = () => (
                         alt="Loki Logo"
                         style={{ width: '120px', marginBottom: '1.5rem', filter: 'drop-shadow(0 0 30px rgba(230,194,0,0.7)) brightness(1.2)' }}
                     />
-                    <p style={{ fontSize: 'clamp(1rem, 2vw, 1.3rem)', fontStyle: 'italic', color: 'var(--color-accent)', lineHeight: 1.7, fontWeight: 300, marginBottom: '0.75rem' }}>
-                        "Eu sou Loki, de Asgard. E eu estou destinado ao grandioso."
+                    <p style={{ fontSize: 'clamp(0.95rem, 2vw, 1.2rem)', fontStyle: 'italic', color: 'var(--color-accent)', lineHeight: 1.75, fontWeight: 300, marginBottom: '0.75rem' }}>
+                        "Eu sei o que quero, que tipo de deus preciso ser — por você, por todos nós."
                     </p>
-                    <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', letterSpacing: '0.05em', marginBottom: '2rem' }}>Loki · Os Vingadores (2012)</p>
+                    <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', letterSpacing: '0.05em', marginBottom: '2rem' }}>Loki · Temporada 2 (2023)</p>
 
                     <a
                         href="/loki_text.pdf"
