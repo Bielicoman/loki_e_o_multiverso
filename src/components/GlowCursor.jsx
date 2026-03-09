@@ -1,6 +1,11 @@
 import { useEffect, useRef } from 'react';
 
 const GlowCursor = () => {
+    // Disable on touch / coarse-pointer devices (mobile, tablet) and reduced motion
+    const isTouch = typeof window !== 'undefined' &&
+        (window.matchMedia('(pointer: coarse)').matches ||
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+
     const orbRef = useRef(null);
     const ibeamRef = useRef(null);
     const animRef = useRef(null);
@@ -8,6 +13,8 @@ const GlowCursor = () => {
     const stateRef = useRef('default');
 
     useEffect(() => {
+        if (isTouch) return;
+
         const orb = orbRef.current;
         const ibeam = ibeamRef.current;
         if (!orb || !ibeam) return;

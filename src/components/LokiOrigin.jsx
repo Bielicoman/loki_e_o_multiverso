@@ -97,12 +97,7 @@ const LokiOrigin = () => (
                 </p>
             </motion.div>
 
-            {/* 4 cards side by side */}
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(4, 1fr)',
-                gap: '1.25rem',
-            }}>
+            <div className="grid-4">
                 {ORIGIN_STEPS.map((step, i) => (
                     <motion.div
                         key={i}
@@ -124,13 +119,14 @@ const LokiOrigin = () => (
                         onMouseEnter={e => e.currentTarget.style.boxShadow = `0 30px 60px rgba(0,0,0,0.6), 0 0 0 1px ${step.color}33`}
                         onMouseLeave={e => e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.5)'}
                     >
-                        {/* Image */}
                         <div style={{ aspectRatio: '4/5', overflow: 'hidden', position: 'relative', background: '#060c09' }}>
                             <motion.img
                                 src={step.image}
                                 alt={step.title}
+                                loading="lazy"
+                                className="origin-img"
                                 whileHover={{ scale: 1.04 }}
-                                transition={{ duration: 0.5 }}
+                                transition={{ duration: 0.4 }}
                                 style={{
                                     width: '100%',
                                     height: '100%',

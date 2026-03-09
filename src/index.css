@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;600;700;800&display=swap');
 
+/* ══════════════════════════════════════════════════════
+   CSS VARIABLES — Dark (default) + Light overrides
+══════════════════════════════════════════════════════ */
 :root {
-    /* Loki Palette - UX 2026 Refined */
     --color-primary: #0a1c04;
     --color-secondary: #0d280b;
     --color-accent: #e6c200;
@@ -12,29 +14,63 @@
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* Glassmorphism - Seamless */
+    /* Glass */
     --glass-bg: rgba(255, 255, 255, 0.02);
     --glass-border: rgba(255, 255, 255, 0.05);
     --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
 
-    /* Light mode overrides */
-    --bg-color: var(--color-dark);
-    --text-color: var(--color-light);
-    --heading-color: var(--color-accent);
+    /* Semantic */
+    --bg-color: #050505;
+    --text-color: #f5f5f7;
+    --heading-color: #e6c200;
+
+    /* Themed extras — used in JSX via var() */
+    --card-bg: rgba(10, 22, 14, 0.85);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.6);
+    --text-muted: rgba(255, 255, 255, 0.4);
+    --text-ultra-muted: rgba(255, 255, 255, 0.22);
+    --nav-bg: rgba(4, 8, 6, 0.75);
+    --nav-border: rgba(255, 255, 255, 0.05);
+    --tag-bg: rgba(255, 255, 255, 0.06);
+    --tag-border: rgba(255, 255, 255, 0.12);
 }
 
 [data-theme='light'] {
-    --bg-color: #fafbfc;
-    --text-color: #1d1d1f;
-    --heading-color: #0b2408;
-    --glass-bg: rgba(0, 0, 0, 0.02);
-    --glass-border: rgba(0, 0, 0, 0.06);
-    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-    --color-primary: #123d10;
-    --color-accent: #c4a100;
+    --color-primary: #1a4a18;
+    --color-secondary: #d8edd2;
+    --color-accent: #b08a00;
+    --color-dark: #f4f1e8;
+    --color-light: #1a1a2e;
+    --color-gray: #5a6472;
+
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(0, 0, 0, 0.07);
+    --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+
+    --bg-color: #f7f4ed;
+    --text-color: #1a1a2e;
+    --heading-color: #1a4a18;
+
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --card-border: rgba(0, 0, 0, 0.07);
+    --text-primary: rgba(20, 20, 40, 0.92);
+    --text-secondary: rgba(20, 20, 40, 0.65);
+    --text-muted: rgba(20, 20, 40, 0.45);
+    --text-ultra-muted: rgba(20, 20, 40, 0.28);
+    --nav-bg: rgba(244, 241, 232, 0.88);
+    --nav-border: rgba(0, 0, 0, 0.08);
+    --tag-bg: rgba(0, 0, 0, 0.04);
+    --tag-border: rgba(0, 0, 0, 0.10);
 }
 
-* {
+/* ══════════════════════════════════════════════════════
+   GLOBAL RESET
+══════════════════════════════════════════════════════ */
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -44,8 +80,7 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
     color: var(--text-color);
-    transition: background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-        color 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-color 0.4s ease, color 0.4s ease;
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
@@ -68,39 +103,136 @@ h6 {
 a {
     color: var(--color-accent);
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
 a:hover {
     opacity: 0.7;
 }
 
-/* Utilities */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ══════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+══════════════════════════════════════════════════════ */
 .container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 5%;
 }
 
-.text-center {
-    text-align: center;
+/* ── Responsive grids ── */
+.grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
 }
 
-.mb-1 {
-    margin-bottom: 1rem;
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
 }
 
-.mb-2 {
-    margin-bottom: 2rem;
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
 }
 
-.mb-4 {
-    margin-bottom: 4rem;
+/* ══════════════════════════════════════════════════════
+   LIGHT MODE — Section background overrides
+   (sections that use hardcoded colors in JSX)
+══════════════════════════════════════════════════════ */
+[data-theme='light'] #inicio {
+    background: #1a2e18 !important;
 }
 
-/* 2026 Minimal Scrollbar */
+[data-theme='light'] #objetivo {
+    background: var(--bg-color);
+}
+
+[data-theme='light'] #transmidia {
+    background: var(--color-secondary) !important;
+}
+
+[data-theme='light'] #origem-loki {
+    background: #dff0da !important;
+}
+
+[data-theme='light'] #multiverso {
+    background: var(--color-dark) !important;
+}
+
+[data-theme='light'] #metodologia {
+    background: var(--color-secondary) !important;
+}
+
+[data-theme='light'] #linha-do-tempo {
+    background: #f4f1e8 !important;
+}
+
+[data-theme='light'] #conclusao {
+    background: var(--color-secondary) !important;
+}
+
+[data-theme='light'] #glorioso-proposito {
+    background: #1a1a1a !important;
+}
+
+[data-theme='light'] #referencias {
+    background: var(--bg-color);
+}
+
+/* Light mode: card backgrounds that are hardcoded dark */
+[data-theme='light'] .themed-card {
+    background: var(--card-bg) !important;
+    border-color: var(--card-border) !important;
+}
+
+/* Light mode: heading colors in sections that override them */
+[data-theme='light'] h2,
+[data-theme='light'] h3 {
+    color: var(--heading-color);
+}
+
+/* Light mode: NavBar pill */
+[data-theme='light'] .navbar-pill {
+    background: var(--nav-bg) !important;
+    border-color: var(--nav-border) !important;
+}
+
+[data-theme='light'] .nav-link {
+    color: rgba(20, 20, 40, 0.55) !important;
+}
+
+[data-theme='light'] .nav-link:hover,
+[data-theme='light'] .nav-link.active {
+    color: rgba(20, 20, 40, 0.9) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   PERFORMANCE
+══════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   SCROLLBAR
+══════════════════════════════════════════════════════ */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -118,5 +250,220 @@ a:hover {
 
 ::selection {
     background: var(--color-accent);
-    color: var(--color-dark);
+    color: #000;
+}
+
+/* ══════════════════════════════════════════════════════
+   NAV — HAMBURGER (mobile only)
+══════════════════════════════════════════════════════ */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    width: 28px;
+    height: 28px;
+    justify-content: center;
+    align-items: center;
+    background: rgba(82, 183, 136, 0.12);
+    border: 1px solid rgba(82, 183, 136, 0.2);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+    color: #52b788;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(340px, calc(100vw - 2rem));
+    background: rgba(4, 8, 6, 0.96);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    padding: 1rem;
+    z-index: 8999;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.mobile-menu.open {
+    display: flex;
+}
+
+[data-theme='light'] .mobile-menu {
+    background: rgba(244, 241, 232, 0.97);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.mobile-menu a {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.9rem;
+    padding: 0.65rem 1rem;
+    border-radius: 10px;
+    display: block;
+    transition: background 0.15s ease;
+}
+
+.mobile-menu a:hover {
+    background: rgba(82, 183, 136, 0.12);
+    color: #52b788;
+}
+
+[data-theme='light'] .mobile-menu a {
+    color: rgba(20, 20, 40, 0.75);
+}
+
+[data-theme='light'] .mobile-menu a:hover {
+    color: var(--color-primary);
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .container {
+        padding: 0 4%;
+    }
+}
+
+/* ── Mobile (≤ 768px) ── */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-items-desktop {
+        display: none !important;
+    }
+
+    .nav-separator {
+        display: none !important;
+    }
+
+    .grid-4,
+    .grid-3,
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    /* Sections: reduce vertical padding */
+    section {
+        padding: 4rem 0 !important;
+    }
+
+    #inicio {
+        padding: 0 !important;
+    }
+
+    /* hero keeps full height */
+
+    /* Timeline: stack vertically */
+    .timeline-row {
+        grid-template-columns: 1fr !important;
+        gap: 0 !important;
+    }
+
+    .timeline-center {
+        display: none !important;
+    }
+
+    .timeline-side {
+        padding: 0 !important;
+        justify-content: center !important;
+    }
+
+    /* LokiOrigin: reduce card image height */
+    .origin-img {
+        aspect-ratio: 16/9 !important;
+    }
+
+    /* Hero adjustments */
+    #inicio {
+        min-height: 100svh !important;
+    }
+}
+
+/* ── Small phones (≤ 480px) ── */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 0.75rem;
+    }
+
+    h2 {
+        font-size: clamp(1.4rem, 6vw, 2rem) !important;
+    }
+}
+
+/* ── Landscape mobile (wide but short) ── */
+@media (max-height: 500px) and (orientation: landscape) {
+    #inicio {
+        min-height: 100vw;
+    }
+
+    section {
+        padding: 2.5rem 0 !important;
+    }
+
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   PORTRAIT DESKTOP (vertical monitors: e.g. 1080×1920)
+══════════════════════════════════════════════════════ */
+@media (orientation: portrait) and (min-width: 600px) and (min-height: 900px) {
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .container {
+        max-width: 680px;
+    }
+
+    /* Timeline still stacks nicely single-col or 1fr 60px 1fr kept */
+}
+
+/* ══════════════════════════════════════════════════════
+   LEGACY UTILITIES (kept for backward compat)
+══════════════════════════════════════════════════════ */
+.text-center {
+    text-align: center;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-4 {
+    margin-bottom: 4rem;
 }

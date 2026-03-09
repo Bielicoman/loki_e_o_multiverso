@@ -61,6 +61,7 @@ const NODES = [
 const BRANCH_W = 120; // px from center to card edge
 
 const TreeTimeline = () => {
+    const isMobile = useIsMobile();
     return (
         <section id="linha-do-tempo" style={{
             padding: '8rem 0 6rem',
@@ -112,51 +113,53 @@ const TreeTimeline = () => {
                     flexDirection: 'column',
                     gap: 0,
                 }}>
-                    {/* Central Trunk */}
-                    <div style={{
-                        position: 'absolute',
-                        left: '50%',
-                        top: 0,
-                        bottom: 0,
-                        width: '2px',
-                        transform: 'translateX(-50%)',
-                        zIndex: 0,
-                        overflow: 'hidden',
-                    }}>
-                        <motion.div
-                            initial={{ scaleY: 0 }}
-                            whileInView={{ scaleY: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 2, ease: 'easeInOut' }}
-                            style={{
-                                width: '2px',
-                                height: '100%',
-                                background: 'linear-gradient(to bottom, transparent, #52b788 15%, #40916c 40%, #2d6a4f 60%, #ffd700 85%, transparent)',
-                                transformOrigin: 'top center',
-                            }}
-                        />
-                    </div>
+                    {/* Central Trunk — hidden on mobile */}
+                    {!isMobile && (
+                        <div style={{
+                            position: 'absolute',
+                            left: '50%',
+                            top: 0,
+                            bottom: 0,
+                            width: '2px',
+                            transform: 'translateX(-50%)',
+                            zIndex: 0,
+                            overflow: 'hidden',
+                        }}>
+                            <motion.div
+                                initial={{ scaleY: 0 }}
+                                whileInView={{ scaleY: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 2, ease: 'easeInOut' }}
+                                style={{
+                                    width: '2px',
+                                    height: '100%',
+                                    background: 'linear-gradient(to bottom, transparent, #52b788 15%, #40916c 40%, #2d6a4f 60%, #ffd700 85%, transparent)',
+                                    transformOrigin: 'top center',
+                                }}
+                            />
+                        </div>
+                    )}
 
                     {NODES.map((node, i) => {
                         const isLeft = node.side === 'left';
                         return (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, x: isLeft ? -50 : 50 }}
+                                initial={{ opacity: 0, x: isMobile ? 0 : (isLeft ? -50 : 50) }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true, margin: '-60px' }}
-                                transition={{ duration: 0.7, delay: i * 0.1 }}
+                                transition={{ duration: 0.5, delay: i * 0.07 }}
                                 style={{
                                     display: 'grid',
-                                    gridTemplateColumns: '1fr 60px 1fr',
+                                    gridTemplateColumns: isMobile ? '1fr' : '1fr 60px 1fr',
                                     alignItems: 'center',
-                                    marginBottom: '3rem',
+                                    marginBottom: isMobile ? '1.25rem' : '3rem',
                                     position: 'relative',
                                     zIndex: 1,
                                 }}
                             >
-                                {/* Left side */}
-                                <div style={{ paddingRight: '1.5rem', display: 'flex', justifyContent: 'flex-end' }}>
+                                {/* Left side — hide on mobile when card belongs to right */}
+                                <div style={{ paddingRight: isMobile ? 0 : '1.5rem', display: isMobile && !isLeft ? 'none' : 'flex', justifyContent: 'flex-end' }}>
                                     {isLeft ? (
                                         <NodeCard node={node} />
                                     ) : (
@@ -165,8 +168,8 @@ const TreeTimeline = () => {
                                     )}
                                 </div>
 
-                                {/* Center — trunk dot + branch line via SVG */}
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', height: '200px' }}>
+                                {/* Center — trunk dot + branch line — hidden on mobile */}
+                                <div style={{ display: isMobile ? 'none' : 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', height: '200px' }}>
                                     {/* Horizontal branch line */}
                                     <svg
                                         viewBox="0 0 60 10"
@@ -233,8 +236,8 @@ const TreeTimeline = () => {
                                     />
                                 </div>
 
-                                {/* Right side */}
-                                <div style={{ paddingLeft: '1.5rem', display: 'flex', justifyContent: 'flex-start' }}>
+                                {/* Right side — hide on mobile when card belongs to left */}
+                                <div style={{ paddingLeft: isMobile ? 0 : '1.5rem', display: isMobile && isLeft ? 'none' : 'flex', justifyContent: 'flex-start' }}>
                                     {!isLeft ? (
                                         <NodeCard node={node} />
                                     ) : (
@@ -270,6 +273,7 @@ const NodeCard = ({ node }) => (
             <img
                 src={node.image}
                 alt={node.title}
+                loading="lazy"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
             />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.8))' }} />
